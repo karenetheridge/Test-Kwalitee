@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.02      2013-03-31 14:58:52 PDT-0700 (Karen Etheridge)
     - no operational changes - re-releasing under new management via github
       and Dist::Zilla
 
