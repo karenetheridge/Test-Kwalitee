@@ -215,6 +215,8 @@ Does the distribution have a POD test file?
 
 Does the distribution have a POD-coverage test file?
 
+=for Pod::Coverage has_buildtool has_changelog has_manifest has_meta_yml has_test_pod has_test_pod_coverage has_tests
+
 =back
 
 =head1 AUTHOR
