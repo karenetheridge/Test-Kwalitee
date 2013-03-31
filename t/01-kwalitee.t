@@ -2,6 +2,5 @@ use strict;
 use warnings;
 
 use Test::More;
-eval { require Test::Kwalitee; Test::Kwalitee->import() };
-
-plan( skip_all => "Test::Kwalitee not installed: $@; skipping" ) if $@;
+plan( skip_all => "running in a bare repository (some files missing): skipping" ) if -d '.git';
+use Test::Kwalitee;
