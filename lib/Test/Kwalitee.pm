@@ -1,11 +1,10 @@
+use strict;
+use warnings;
 package Test::Kwalitee;
 
 use Cwd;
 use Test::Builder;
 use Module::CPANTS::Analyse 0.87;
-
-use strict;
-use warnings;
 
 use vars qw( $Test $VERSION );
 
