@@ -1,0 +1,15 @@
+---
+name: Test-Kwalitee
+version: 0.30
+author: ~
+abstract: ~
+license: perl
+requires:
+  Module::CPANTS::Analyse: 0.50
+  Test::Simple: 0.47
+  perl: 5.6.1
+provides:
+  Test::Kwalitee:
+    file: lib/Test/Kwalitee.pm
+    version: 0.30
+generated_by: Module::Build version 0.2611
