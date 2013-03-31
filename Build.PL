@@ -1,6 +1,6 @@
 #!perl
 
-BEGIN { require 5.00602 }
+BEGIN { require 5.006002 }
 use Module::Build;
 
 my $build = Module::Build->new(
