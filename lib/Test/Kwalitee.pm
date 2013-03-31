@@ -172,19 +172,19 @@ Is the distribution extractable?
 
 Does the distribution have a F<README> file?
 
-=item * have_manifest
+=item * has_manifest
 
 Does the distribution have a F<MANIFEST>?
 
-=item * have_meta_yml
+=item * has_meta_yml
 
 Does the distribution have a F<META.yml> file?
 
-=item * have_buildtool
+=item * has_buildtool
 
 Does the distribution have a build tool file?
 
-=item * have_changelog
+=item * has_changelog
 
 Does the distribution have a changelog?
 
@@ -192,7 +192,7 @@ Does the distribution have a changelog?
 
 Does the distribution have no symlinks?
 
-=item * have_tests
+=item * has_tests
 
 Does the distribution have tests?
 
@@ -208,11 +208,11 @@ Does the distribution have no POD errors?
 
 Does the distribution files all use strict?
 
-=item * have_test_pod
+=item * has_test_pod
 
 Does the distribution have a POD test file?
 
-=item * have_test_pod_coverage
+=item * has_test_pod_coverage
 
 Does the distribution have a POD-coverage test file?
 
