@@ -3,15 +3,18 @@ Test::Kwalitee
 
 An automated test for signs of quality in a Perl module distribution.
 
-1.00 released Thu Aug 14 05:00:11 UTC 2008
+1.01 released Thu Aug 14 20:04:45 UTC 2008
 
 INSTALLATION
 ------------
 
-	$ perl Build.PL
-	$ perl ./Build
-	$ perl ./Build test
-	$ sudo perl ./Build install
+    $ perl Build.PL
+    $ perl ./Build
+    $ perl ./Build test
+    $ sudo perl ./Build install
 
-COPYRIGHT --------- Copyright 2005 - 2008, chromatic (chromatic at wgz dot org)
-Licensed under the same terms as Perl 5.8.x.
+COPYRIGHT
+---------
+
+Copyright 2005 - 2008, chromatic (chromatic at wgz dot org) Licensed under the
+same terms as Perl 5.8.x.

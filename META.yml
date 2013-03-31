@@ -1,6 +1,6 @@
 ---
 name: Test-Kwalitee
-version: 1.00
+version: 1.01
 author: []
 abstract: 'Test the quality of your distribution, automatically!'
 license: perl
@@ -14,7 +14,7 @@ requires:
 provides:
   Test::Kwalitee:
     file: lib/Test/Kwalitee.pm
-    version: 1.00
+    version: 1.01
 generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
