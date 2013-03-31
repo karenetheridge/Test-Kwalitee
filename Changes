@@ -1,6 +1,9 @@
 Test::Kwalitee
 --------------
 
+1.01  Thu Aug 14 2008
+    - no entry made
+
 1.00  Thu Aug 14 05:03:02 UTC 2008
     - fixed code to work with modern Module::CPANTS::Analyse (Elliot Shank,
         Xavier Caron, Heiko Eißfeldt, and probably others)
