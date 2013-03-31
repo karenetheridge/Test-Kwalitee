@@ -8,7 +8,6 @@ use strict;
 use warnings;
 
 use vars qw( $Test $VERSION );
-$VERSION = '1.01';
 
 BEGIN { $Test = Test::Builder->new() }
 

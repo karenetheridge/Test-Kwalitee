@@ -1,5 +1,8 @@
-Test::Kwalitee
---------------
+Revision history for {{$dist->name}}
+
+{{$NEXT}}
+    - no operational changes - re-releasing under new management via github
+      and Dist::Zilla
 
 1.01  Thu Aug 14 2008
     - no entry made
