@@ -1,4 +1,3 @@
-
 package Test::Kwalitee;
 
 use Cwd;
@@ -9,98 +8,99 @@ use strict;
 use warnings;
 
 use vars qw( $Test $VERSION );
-$VERSION = '0.30';
+$VERSION = '1.00';
 
 BEGIN { $Test = Test::Builder->new() }
 
 my %test_types;
 BEGIN
 {
-	%test_types =
-	(
-		extractable           => 'distribution is extractable',
-		has_readme            => 'distribution has a readme file',
-		has_manifest          => 'distribution has a MANIFEST',
-		has_meta_yml          => 'distribution has a META.yml file',
-		has_buildtool         => 'distribution has a build tool file',
-		has_changelog         => 'distribution has a changelog',
-		no_symlinks           => 'distribution has no symlinks',
-		has_tests             => 'distribution has tests',
-		proper_libs           => 'distribution has proper libs',
-		no_pod_errors         => 'distribution has no POD errors',
-		use_strict            => 'distribution files all use strict',
-		has_test_pod          => 'distribution has a POD test file',
-		has_test_pod_coverage => 'distribution has a POD-coverage test file',
-	);
+    %test_types =
+    (
+        extractable           => 'distribution is extractable',
+        has_readme            => 'distribution has a readme file',
+        has_manifest          => 'distribution has a MANIFEST',
+        has_meta_yml          => 'distribution has a META.yml file',
+        has_buildtool         => 'distribution has a build tool file',
+        has_changelog         => 'distribution has a changelog',
+        no_symlinks           => 'distribution has no symlinks',
+        has_tests             => 'distribution has tests',
+        proper_libs           => 'distribution has proper libs',
+        no_pod_errors         => 'distribution has no POD errors',
+        use_strict            => 'distribution files all use strict',
+        has_test_pod          => 'distribution has a POD test file',
+        has_test_pod_coverage => 'distribution has a POD-coverage test file',
+    );
 
 # These three don't really work unless you have a tarball, so skip them for now
-#		extracts_nicely       => 'distribution extracts nicely',
-#		has_version           => 'distribution has a version',
-#		has_proper_version    => 'distribution has a proper version',
+#        extracts_nicely       => 'distribution extracts nicely',
+#        has_version           => 'distribution has a version',
+#        has_proper_version    => 'distribution has a proper version',
 
-	while (my ($subname, $diagnostic) = each %test_types)
-	{
-		my $sub = sub
-		{
-			my ($dist, $metric) = @_;
-			$Test->ok( $metric->{code}->( $dist ), $subname, $diagnostic ) ||
-				$Test->diag( @{ $metric }{qw( remedy error )} );
-		};
+    while (my ($subname, $diagnostic) = each %test_types)
+    {
+        my $sub = sub
+        {
+            my ($dist, $metric) = @_;
+            $Test->ok( $metric->{code}->( $dist ), $subname, $diagnostic ) ||
+                $Test->diag( @{ $metric }{qw( remedy error )} );
+        };
 
-		no strict 'refs';
-		*{ $subname } = $sub;
-	}
+        no strict 'refs';
+        *{ $subname } = $sub;
+    }
 }
 
 sub import
 {
-	my ($class, %args)   = @_;
-	$args{basedir}     ||= cwd();
-	$args{tests}       ||= [];
-	my @tests            = @{ $args{tests} } ?
-	                       @{ $args{tests} } : keys %test_types;
-	@tests               = keys %test_types if grep { /^-/ } @tests;
+    my ($class, %args)   = @_;
+    $args{basedir}     ||= cwd();
+    $args{tests}       ||= [];
+    my @tests            = @{ $args{tests} } ?
+                           @{ $args{tests} } : keys %test_types;
+    @tests               = keys %test_types if grep { /^-/ } @tests;
 
-	my %run_tests;
+    my %run_tests;
 
-	for my $test ( @tests, @{ $args{tests} } )
-	{
-		if ( $test =~ s/^-// )
-		{
-			delete $run_tests{$test};
-		}
-		else
-		{
-			$run_tests{$test} = 1;
-		}
-	}
+    for my $test ( @tests, @{ $args{tests} } )
+    {
+        if ( $test =~ s/^-// )
+        {
+            delete $run_tests{$test};
+        }
+        else
+        {
+            $run_tests{$test} = 1;
+        }
+    }
 
-	my $analyzer = Module::CPANTS::Analyse->new({
-		distdir => $args{basedir},
-	});
+    my $analyzer = Module::CPANTS::Analyse->new({
+        distdir => $args{basedir},
+        dist    => $args{basedir},
+    });
 
-	$Test->plan( tests => scalar keys %run_tests );
+    $Test->plan( tests => scalar keys %run_tests );
 
-	for my $generator (@{ $analyzer->mck()->generators() } )
-	{
-		next if $generator =~ /Unpack/;
-		next if $generator =~ /CPAN$/;
-		next if $generator =~ /Authors$/;
+    for my $generator (@{ $analyzer->mck()->generators() } )
+    {
+        next if $generator =~ /Unpack/;
+        next if $generator =~ /CPAN$/;
+        next if $generator =~ /Authors$/;
 
-		# no distname, so no warnings here
-		{
-			local $^W;
-			$generator->analyse($analyzer);
-		}
+        # no distname, so no warnings here
+        {
+            local $^W;
+            $generator->analyse($analyzer);
+        }
 
-		for my $indicator (@{ $generator->kwalitee_indicators() })
-		{
-			next unless $run_tests{ $indicator->{name} };
-			my $sub = __PACKAGE__->can( $indicator->{name} );
-			next unless $sub;
-			$sub->( $analyzer->d(), $indicator );
-		}
-	}
+        for my $indicator (@{ $generator->kwalitee_indicators() })
+        {
+            next unless $run_tests{ $indicator->{name} };
+            my $sub = __PACKAGE__->can( $indicator->{name} );
+            next unless $sub;
+            $sub->( $analyzer->d(), $indicator );
+        }
+    }
 }
 
 1;
@@ -148,7 +148,7 @@ method:
   eval
   {
       require Test::Kwalitee;
-	  Test::Kwalitee->import( tests => [ qw( use_strict has_tests ) ] );
+      Test::Kwalitee->import( tests => [ qw( use_strict has_tests ) ] );
   };
 
 To disable a test, pass its name with a leading minus (C<->) to C<import()>:
@@ -156,14 +156,14 @@ To disable a test, pass its name with a leading minus (C<->) to C<import()>:
   eval
   {
       require Test::Kwalitee;
-	  Test::Kwalitee->import( tests =>
-	  	[ qw( -has_test_pod -has_test_pod_coverage ) ]
+      Test::Kwalitee->import( tests =>
+          [ qw( -has_test_pod -has_test_pod_coverage ) ]
       );
   };
 
 
 
-As of version 0.30, the tests include:
+As of version 1.00, the tests include:
 
 =over 4
 
@@ -233,7 +233,7 @@ No known bugs.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2005 - 2006, chromatic.  Some rights reserved.
+Copyright (c) 2005 - 2008, chromatic.  Some rights reserved.
 
 This module is free software; you can use, redistribute, and modify it under
 the same terms as Perl 5.8.x.
