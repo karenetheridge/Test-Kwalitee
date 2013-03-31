@@ -86,11 +86,7 @@ sub import
         next if $generator =~ /CPAN$/;
         next if $generator =~ /Authors$/;
 
-        # no distname, so no warnings here
-        {
-            local $^W;
-            $generator->analyse($analyzer);
-        }
+        $generator->analyse($analyzer);
 
         for my $indicator (@{ $generator->kwalitee_indicators() })
         {
