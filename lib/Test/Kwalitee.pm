@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 package Test::Kwalitee;
+# ABSTRACT: test the Kwalitee of a distribution before you release it
 
 use Cwd;
 use Test::Builder;
@@ -101,10 +102,6 @@ sub import
 __END__
 
 =pod
-
-=head1 NAME
-
-  Test::Kwalitee - test the Kwalitee of a distribution before you release it
 
 =head1 SYNOPSIS
 
@@ -219,22 +216,9 @@ Does the distribution have a POD-coverage test file?
 
 =back
 
-=head1 AUTHOR
-
-chromatic, E<lt>chromatic at wgz dot orgE<gt>
+=head1 ACKNOWLEDGEMENTS
 
 With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
-
-=head1 BUGS
-
-No known bugs.
-
-=head1 COPYRIGHT
-
-Copyright (c) 2005 - 2008, chromatic.  Some rights reserved.
-
-This module is free software; you can use, redistribute, and modify it under
-the same terms as Perl 5.8.x.
 
 =head1 SEE ALSO
 
