@@ -114,6 +114,8 @@ __END__
 
 =head1 DESCRIPTION
 
+=for stopwords CPANTS
+
 Kwalitee is an automatically-measurable gauge of how good your software is.
 That's very different from quality, which a computer really can't measure in a
 general sense.  (If you can, you've solved a hard problem in computer science.)
@@ -160,6 +162,8 @@ As of version 1.00, the tests include:
 
 =over 4
 
+=for stopwords extractable
+
 =item * extractable
 
 Is the distribution extractable?
@@ -180,6 +184,8 @@ Does the distribution have a F<META.yml> file?
 
 Does the distribution have a build tool file?
 
+=for stopwords changelog
+
 =item * has_changelog
 
 Does the distribution have a changelog?
@@ -191,6 +197,8 @@ Does the distribution have no symlinks?
 =item * has_tests
 
 Does the distribution have tests?
+
+=for stopwords libs
 
 =item * proper_libs
 
@@ -217,6 +225,8 @@ Does the distribution have a POD-coverage test file?
 =back
 
 =head1 ACKNOWLEDGEMENTS
+
+=for stopwords Klausner Dolan
 
 With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
