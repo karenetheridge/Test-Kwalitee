@@ -105,6 +105,8 @@ sub import
 1;
 __END__
 
+=pod
+
 =head1 NAME
 
   Test::Kwalitee - test the Kwalitee of a distribution before you release it
