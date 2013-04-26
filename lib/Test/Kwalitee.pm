@@ -233,3 +233,10 @@ Copyright (c) 2005 - 2008, chromatic.  Some rights reserved.
 
 This module is free software; you can use, redistribute, and modify it under
 the same terms as Perl 5.8.x.
+
+=head1 SEE ALSO
+
+L<Module::CPANTS::Analyse>
+
+L<Test::Kwalitee::Extra>
+
