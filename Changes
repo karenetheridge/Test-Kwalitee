@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.03      2013-04-27 05:49:31 PDT-0700 (Karen Etheridge)
     - fixed documentation to refer to the proper names of Kwalitee tests
       (RT#24506) (thanks, Gavin Sherlock!)
     - cleaned up partially-botched distribution metadata and README
