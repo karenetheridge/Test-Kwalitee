@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - re-release with bumped developer prereqs to depend on a higher version
+      of Test::More for t/00-compile.t and t/00-check-deps.t (RT#84900)
 
 1.03      2013-04-27 05:49:31 PDT-0700 (Karen Etheridge)
     - fixed documentation to refer to the proper names of Kwalitee tests
