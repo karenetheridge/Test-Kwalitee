@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.04      2013-04-28 08:55:17 PDT-0700 (Karen Etheridge)
     - re-release with bumped developer prereqs to depend on a higher version
       of Test::More for t/00-compile.t and t/00-check-deps.t (RT#84900)
 
