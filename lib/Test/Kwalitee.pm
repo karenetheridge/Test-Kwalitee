@@ -160,9 +160,9 @@ To disable a test, pass its name with a leading minus (C<->) to C<import()>:
 
 As of version 1.00, the tests include:
 
-=over 4
-
 =for stopwords extractable
+
+=over 4
 
 =item * extractable
 

@@ -1,6 +1,17 @@
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 
 use Test::More;
-plan( skip_all => "running in a bare repository (some files missing): skipping" ) if -d '.git';
-use Test::Kwalitee;
+
+use Test::Kwalitee tests => [
+        qw(
+            extractable
+            has_changelog
+            has_readme
+            has_tests
+            no_symlinks
+            proper_libs
+            no_pod_errors
+            use_strict
+        )
+    ];
