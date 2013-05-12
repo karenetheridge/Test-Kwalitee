@@ -4,7 +4,7 @@ package Test::Kwalitee;
 # ABSTRACT: test the Kwalitee of a distribution before you release it
 
 use Cwd;
-use Test::Builder;
+use Test::Builder 0.88;
 use Module::CPANTS::Analyse 0.87;
 
 use vars qw( $Test $VERSION );
@@ -78,9 +78,7 @@ sub import
         dist    => $args{basedir},
     });
 
-    $Test->plan( tests => scalar keys %run_tests );
-
-    for my $generator (@{ $analyzer->mck()->generators() } )
+    for my $generator (sort { $a cmp $b } @{ $analyzer->mck()->generators() } )
     {
         next if $generator =~ /Unpack/;
         next if $generator =~ /CPAN$/;
@@ -88,7 +86,7 @@ sub import
 
         $generator->analyse($analyzer);
 
-        for my $indicator (@{ $generator->kwalitee_indicators() })
+        for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators() })
         {
             next unless $run_tests{ $indicator->{name} };
             my $sub = __PACKAGE__->can( $indicator->{name} );
@@ -97,6 +95,8 @@ sub import
         }
     }
 }
+
+END { $Test->done_testing }
 
 1;
 __END__

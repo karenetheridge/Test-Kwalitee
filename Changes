@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - more rigorous testing of output; (in order to make this possible) now we
+      do END { done_testing } instead of planning a test count
 
 1.04      2013-04-28 08:55:17 PDT-0700 (Karen Etheridge)
     - re-release with bumped developer prereqs to depend on a higher version
