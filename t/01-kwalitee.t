@@ -1,5 +1,5 @@
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 
 use Test::Tester 0.108;
 use Test::More;
