@@ -256,3 +256,5 @@ L<Module::CPANTS::Analyse>
 
 L<Test::Kwalitee::Extra>
 
+L<Dist::Zilla::Plugin::Test::Kwalitee>
+
