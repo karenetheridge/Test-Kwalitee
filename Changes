@@ -6,6 +6,9 @@ Revision history for {{$dist->name}}
       earlier tests (charsbar)
     - synopsis updated to recommend a better way to run this module, ensuring
       that it is not run by cpantesters or at installation time
+    - we no longer create a function in our namespace for every metric we are
+      going to test -- this should not break anyone, as these subs were never
+      documented as part of the public API
 
 1.06      2013-05-13 14:15:33 PDT-0700 (Karen Etheridge)
     - restore previous behaviour of plan()ing in import, to unbreak some

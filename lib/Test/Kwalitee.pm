@@ -35,24 +35,6 @@ BEGIN
 #        extracts_nicely       => 'distribution extracts nicely',
 #        has_version           => 'distribution has a version',
 #        has_proper_version    => 'distribution has a proper version',
-
-    while (my ($subname, $diagnostic) = each %test_types)
-    {
-        my $sub = sub
-        {
-            my ($dist, $metric) = @_;
-            if (not $Test->ok( $metric->{code}->( $dist ), $subname))
-            {
-                $Test->diag('Error: ', $metric->{error});
-                $Test->diag('Details: ', $dist->{error}{$subname})
-                    if defined $dist->{error} and defined $dist->{error}{$subname};
-                $Test->diag('Remedy: ', $metric->{remedy});
-            }
-        };
-
-        no strict 'refs';
-        *{ $subname } = $sub;
-    }
 }
 
 sub import
@@ -110,13 +92,26 @@ sub import
         for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators() })
         {
             next unless $run_tests{ $indicator->{name} };
-            my $sub = __PACKAGE__->can( $indicator->{name} );
-            next unless $sub;
-            $sub->( $analyzer->d(), $indicator );
+            next unless exists $test_types{$indicator->{name}};
+            _run_indicator($analyzer->d(), $indicator);
         }
     }
 }
 
+sub _run_indicator
+{
+    my ($dist, $metric) = @_;
+
+    my $subname = $metric->{name};
+
+    if (not $Test->ok( $metric->{code}->( $dist ), $subname))
+    {
+        $Test->diag('Error: ', $metric->{error});
+        $Test->diag('Details: ', $dist->{error}{$subname})
+            if defined $dist->{error} and defined $dist->{error}{$subname};
+        $Test->diag('Remedy: ', $metric->{remedy});
+    }
+}
 
 1;
 __END__
