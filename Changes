@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - restore previous behaviour of plan()ing in import, to unbreak some
+      dists that didn't follow the docs (which in this case is ok since it's a
+      horrible idea for a Test module to plan itself anyway) (v1.05)
 
 1.05      2013-05-12 17:17:32 PDT-0700 (Karen Etheridge)
     - more rigorous testing of output; (in order to make this possible) now we

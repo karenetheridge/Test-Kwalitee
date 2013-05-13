@@ -4,7 +4,7 @@ package Test::Kwalitee;
 # ABSTRACT: test the Kwalitee of a distribution before you release it
 
 use Cwd;
-use Test::Builder 0.88;
+use Test::Builder;
 use Module::CPANTS::Analyse 0.87;
 
 use vars qw( $Test $VERSION );
@@ -73,6 +73,8 @@ sub import
         }
     }
 
+    $Test->plan( tests => scalar keys %run_tests );
+
     my $analyzer = Module::CPANTS::Analyse->new({
         distdir => $args{basedir},
         dist    => $args{basedir},
@@ -96,7 +98,6 @@ sub import
     }
 }
 
-END { $Test->done_testing }
 
 1;
 __END__

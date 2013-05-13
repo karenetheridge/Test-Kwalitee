@@ -2,7 +2,7 @@ use strict;
 use warnings FATAL => 'all';
 
 BEGIN {
-    use Test::More;
+    use Test::More 0.88;
     plan skip_all => 'These tests are only for Test::Builder 1.005+'
         if Test::Builder->VERSION < 1.005;
 }

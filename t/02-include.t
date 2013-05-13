@@ -2,7 +2,7 @@ use strict;
 use warnings FATAL => 'all';
 
 use Test::Tester 0.108;
-use Test::More;
+use Test::More 0.88;
 
 plan( skip_all => "running in a bare repository (some files missing): skipping" ) if -d '.git';
 
@@ -10,6 +10,12 @@ plan skip_all => 'These tests are only for Test::Builder 0.9x'
     if Test::Builder->VERSION >= 1.005;
 
 require Test::Kwalitee;
+
+# prevent Test::Kwalitee from making a plan
+{
+    no warnings 'redefine';
+    *Test::Builder::plan = sub { };
+}
 
 check_tests(
     sub { Test::Kwalitee->import( tests => [ qw(use_strict has_readme) ] ) },
@@ -31,4 +37,4 @@ check_tests(
     'explicitly included tests tests run exclusively',
 );
 
-# done_testing already called in Test::Kwalitee's END block
+done_testing;
