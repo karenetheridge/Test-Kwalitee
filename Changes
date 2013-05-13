@@ -4,6 +4,8 @@ Revision history for {{$dist->name}}
     - now the indicators are run in the exact order they are returned
       from Module::CPANTS::Kwalitee::*, as some tests depend on the results of
       earlier tests (charsbar)
+    - synopsis updated to recommend a better way to run this module, ensuring
+      that it is not run by cpantesters or at installation time
 
 1.06      2013-05-13 14:15:33 PDT-0700 (Karen Etheridge)
     - restore previous behaviour of plan()ing in import, to unbreak some

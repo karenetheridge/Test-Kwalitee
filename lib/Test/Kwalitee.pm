@@ -126,11 +126,16 @@ __END__
 =head1 SYNOPSIS
 
   # in a separate test file
-  use Test::More;
 
-  eval { require Test::Kwalitee; Test::Kwalitee->import() };
+  BEGIN {
+      unless ($ENV{RELEASE_TESTING})
+      {
+          use Test::More;
+          plan(skip_all => 'these tests are for release candidate testing');
+      }
+  }
 
-  plan( skip_all => 'Test::Kwalitee not installed; skipping' ) if $@;
+  use Test::Kwalitee;
 
 =head1 DESCRIPTION
 
@@ -154,8 +159,9 @@ Create a test file as shown in the synopsis.  Run it.  It will run all of the
 potential Kwalitee tests on the current distribution, if possible.  If any
 fail, it will report those as regular diagnostics.
 
-If you ship this test and a user does not have C<Test::Kwalitee> installed,
-nothing bad will happen.
+If you ship this test, it will not run for anyone else, because of the
+C<RELEASE_TESTING> guard. (You can omit this guard if you move the test to
+xt/release/, which is not run automatically by other users.)
 
 To run only a handful of tests, pass their names to the module's C<import()>
 method:
