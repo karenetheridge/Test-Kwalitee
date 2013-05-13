@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.05      2013-05-12 17:17:32 PDT-0700 (Karen Etheridge)
     - more rigorous testing of output; (in order to make this possible) now we
       do END { done_testing } instead of planning a test count
 
