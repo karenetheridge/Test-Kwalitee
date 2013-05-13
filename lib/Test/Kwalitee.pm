@@ -41,8 +41,13 @@ BEGIN
         my $sub = sub
         {
             my ($dist, $metric) = @_;
-            $Test->ok( $metric->{code}->( $dist ), $subname, $diagnostic ) ||
-                $Test->diag( @{ $metric }{qw( remedy error )} );
+            if (not $Test->ok( $metric->{code}->( $dist ), $subname))
+            {
+                $Test->diag('Error: ', $metric->{error});
+                $Test->diag('Details: ', $dist->{error}{$subname})
+                    if defined $dist->{error} and defined $dist->{error}{$subname};
+                $Test->diag('Remedy: ', $metric->{remedy});
+            }
         };
 
         no strict 'refs';
