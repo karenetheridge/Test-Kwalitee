@@ -253,9 +253,12 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
 =head1 SEE ALSO
 
-L<Module::CPANTS::Analyse>
+=begin :list
 
-L<Test::Kwalitee::Extra>
+* L<Module::CPANTS::Analyse>
+* L<Test::Kwalitee::Extra>
+* L<Dist::Zilla::Plugin::Test::Kwalitee>
 
-L<Dist::Zilla::Plugin::Test::Kwalitee>
+=end :list
 
+=cut
