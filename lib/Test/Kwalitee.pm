@@ -85,7 +85,7 @@ sub import
         dist    => $args{basedir},
     });
 
-    for my $generator (sort { $a cmp $b } @{ $analyzer->mck()->generators() } )
+    for my $generator ( @{ $analyzer->mck()->generators() } )
     {
         next if $generator =~ /Unpack/;
         next if $generator =~ /CPAN$/;
