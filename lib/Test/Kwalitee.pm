@@ -6,6 +6,7 @@ package Test::Kwalitee;
 use Cwd;
 use Test::Builder;
 use Module::CPANTS::Analyse 0.87;
+use namespace::clean;
 
 use vars qw( $Test $VERSION );
 
