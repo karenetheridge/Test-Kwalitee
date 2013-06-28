@@ -40,7 +40,8 @@ BEGIN
 
 sub import
 {
-    my ($class, %args)   = @_;
+    my ($self, %args) = @_;
+
     $args{basedir}     ||= cwd();
     $args{tests}       ||= [];
     my @tests            = @{ $args{tests} } ?
