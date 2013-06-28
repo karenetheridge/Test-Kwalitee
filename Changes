@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.07      2013-06-28 12:22:00 PDT-0700 (Karen Etheridge)
     - now the indicators are run in the exact order they are returned
       from Module::CPANTS::Kwalitee::*, as some tests depend on the results of
       earlier tests (charsbar)

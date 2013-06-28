@@ -4,16 +4,21 @@ Test::Kwalitee - test the Kwalitee of a distribution before you release it
 
 # VERSION
 
-version 1.06
+version 1.07
 
 # SYNOPSIS
 
     # in a separate test file
-    use Test::More;
 
-    eval { require Test::Kwalitee; Test::Kwalitee->import() };
+    BEGIN {
+        unless ($ENV{RELEASE_TESTING})
+        {
+            use Test::More;
+            plan(skip_all => 'these tests are for release candidate testing');
+        }
+    }
 
-    plan( skip_all => 'Test::Kwalitee not installed; skipping' ) if $@;
+    use Test::Kwalitee;
 
 # DESCRIPTION
 
@@ -35,8 +40,9 @@ Create a test file as shown in the synopsis.  Run it.  It will run all of the
 potential Kwalitee tests on the current distribution, if possible.  If any
 fail, it will report those as regular diagnostics.
 
-If you ship this test and a user does not have `Test::Kwalitee` installed,
-nothing bad will happen.
+If you ship this test, it will not run for anyone else, because of the
+`RELEASE_TESTING` guard. (You can omit this guard if you move the test to
+xt/release/, which is not run automatically by other users.)
 
 To run only a handful of tests, pass their names to the module's `import()`
 method:
@@ -117,9 +123,9 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
 # SEE ALSO
 
-[Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse)
-
-[Test::Kwalitee::Extra](http://search.cpan.org/perldoc?Test::Kwalitee::Extra)
+- [Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse)
+- [Test::Kwalitee::Extra](http://search.cpan.org/perldoc?Test::Kwalitee::Extra)
+- [Dist::Zilla::Plugin::Test::Kwalitee](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::Test::Kwalitee)
 
 # AUTHOR
 
@@ -136,3 +142,4 @@ the same terms as the Perl 5 programming language system itself.
 
 - Gavin Sherlock <sherlock@cpan.org>
 - Karen Etheridge <ether@cpan.org>
+- Kenichi Ishigaki <ishigaki@cpan.org>
