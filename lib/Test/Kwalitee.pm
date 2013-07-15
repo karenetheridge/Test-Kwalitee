@@ -179,29 +179,16 @@ To disable a test, pass its name with a leading minus (C<->) to C<import()>:
       );
   };
 
-
-
 As of version 1.00, the tests include:
-
-=for stopwords extractable
 
 =over 4
 
+=for stopwords extractable
+
 =item * extractable
 
-Is the distribution extractable?
-
-=item * has_readme
-
-Does the distribution have a F<README> file?
-
-=item * has_manifest
-
-Does the distribution have a F<MANIFEST>?
-
-=item * has_meta_yml
-
-Does the distribution have a F<META.yml> file?
+This test does nothing without a tarball; it will be removed in a subsequent
+version.
 
 =item * has_buildtool
 
@@ -213,13 +200,25 @@ Does the distribution have a build tool file?
 
 Does the distribution have a changelog?
 
-=item * no_symlinks
+=item * has_manifest
 
-Does the distribution have no symlinks?
+Does the distribution have a F<MANIFEST>?
+
+=item * has_meta_yml
+
+Does the distribution have a F<META.yml> file?
+
+=item * has_readme
+
+Does the distribution have a F<README> file?
 
 =item * has_tests
 
 Does the distribution have tests?
+
+=item * no_symlinks
+
+Does the distribution have no symlinks?
 
 =for stopwords libs
 
@@ -231,19 +230,20 @@ Does the distribution have proper libs?
 
 Does the distribution have no POD errors?
 
-=item * use_strict
-
-Does the distribution files all use strict?
-
 =item * has_test_pod
 
-Does the distribution have a POD test file?
+Does the distribution have a test for pod correctness?  (Note that this is a
+bad test to include in a distribution where it will be run by users; this
+check will be removed in a subsequent version.)
 
 =item * has_test_pod_coverage
 
-Does the distribution have a POD-coverage test file?
+Does the distribution have a test for pod coverage?  (This test will be
+removed in a subsequent version; see C<has_test_pod> above.)
 
-=for Pod::Coverage has_buildtool has_changelog has_manifest has_meta_yml has_test_pod has_test_pod_coverage has_tests
+=item * use_strict
+
+Does the distribution files all use strict?
 
 =back
 
