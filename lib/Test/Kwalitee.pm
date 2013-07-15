@@ -12,61 +12,36 @@ use vars qw( $Test $VERSION );
 
 BEGIN { $Test = Test::Builder->new() }
 
-my %test_types;
-BEGIN
-{
-    %test_types =
-    (
-        extractable           => 'distribution is extractable',
-        has_readme            => 'distribution has a readme file',
-        has_manifest          => 'distribution has a MANIFEST',
-        has_meta_yml          => 'distribution has a META.yml file',
-        has_buildtool         => 'distribution has a build tool file',
-        has_changelog         => 'distribution has a changelog',
-        no_symlinks           => 'distribution has no symlinks',
-        has_tests             => 'distribution has tests',
-        proper_libs           => 'distribution has proper libs',
-        no_pod_errors         => 'distribution has no POD errors',
-        use_strict            => 'distribution files all use strict',
-        has_test_pod          => 'distribution has a POD test file',
-        has_test_pod_coverage => 'distribution has a POD-coverage test file',
-    );
-
-# These three don't really work unless you have a tarball, so skip them for now
-#        extracts_nicely       => 'distribution extracts nicely',
-#        has_version           => 'distribution has a version',
-#        has_proper_version    => 'distribution has a proper version',
-}
-
 sub import
 {
     my ($self, %args) = @_;
 
+    # Note: the basedir option is NOT documented, and may be removed!!!
     $args{basedir}     ||= cwd();
-    $args{tests}       ||= [];
-    my @tests            = @{ $args{tests} } ?
-                           @{ $args{tests} } : keys %test_types;
-    @tests               = keys %test_types if grep { /^-/ } @tests;
 
-    my %run_tests;
+    my @run_tests = grep { /^[^-]/ } @{$args{tests}};
+    my @skip_tests = map { s/^-//; $_ } grep { /^-/ } @{$args{tests}};
 
-    for my $test ( @tests, @{ $args{tests} } )
-    {
-        if ( $test =~ s/^-// )
-        {
-            delete $run_tests{$test};
-        }
-        else
-        {
-            $run_tests{$test} = 1;
-        }
-    }
+    # These don't really work unless you have a tarball, so skip them
+    push @skip_tests, qw(extracts_nicely no_generated_files has_proper_version has_version manifest_matches_dist);
 
-    $Test->plan( tests => scalar keys %run_tests );
+    # these tests have never been documented as being available via this dist;
+    # skip for now, but in later releases we may add them
+    push @skip_tests, qw(buildtool_not_executable
+        metayml_conforms_to_known_spec metayml_has_license metayml_is_parsable
+        has_better_auto_install has_working_buildtool
+        has_humanreadable_license valid_signature no_cpants_errors);
+
+    # these are classified as 'extra' tests, but they have always been
+    # included in Test::Kwalitee (they don't belong, so we will remove them in
+    # a later release)
+    my @include_extra = qw(has_test_pod has_test_pod_coverage);
 
     my $analyzer = Module::CPANTS::Analyse->new({
         distdir => $args{basedir},
         dist    => $args{basedir},
+        # for debugging..
+        opts => { no_capture => 1 },
     });
 
     # get generators list in the order they should run, but also keep the
@@ -85,19 +60,22 @@ sub import
 
     for my $generator (@generators)
     {
-        next if $generator =~ /Unpack/;
-        next if $generator =~ /CPAN$/;
-        next if $generator =~ /Authors$/;
-
         $generator->analyse($analyzer);
 
         for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators() })
         {
-            next unless $run_tests{ $indicator->{name} };
-            next unless exists $test_types{$indicator->{name}};
+            next if ($indicator->{is_extra} or $indicator->{is_experimental})
+                and not grep { $indicator->{name} eq $_ } @include_extra;
+
+            next if @run_tests and not grep { $indicator->{name} eq $_ } @run_tests;
+
+            next if grep { $indicator->{name} eq $_ } @skip_tests;
+
             _run_indicator($analyzer->d(), $indicator);
         }
     }
+
+    $Test->done_testing;
 }
 
 sub _run_indicator
@@ -109,8 +87,13 @@ sub _run_indicator
     if (not $Test->ok( $metric->{code}->( $dist ), $subname))
     {
         $Test->diag('Error: ', $metric->{error});
-        $Test->diag('Details: ', $dist->{error}{$subname})
+
+        $Test->diag('Details: ',
+            (ref $dist->{error}{$subname}
+                ? join("\n", @{$dist->{error}{$subname}})
+                : $dist->{error}{$subname}))
             if defined $dist->{error} and defined $dist->{error}{$subname};
+
         $Test->diag('Remedy: ', $metric->{remedy});
     }
 }
