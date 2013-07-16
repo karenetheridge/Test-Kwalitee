@@ -4,7 +4,7 @@ package Test::Kwalitee;
 # ABSTRACT: test the Kwalitee of a distribution before you release it
 
 use Cwd;
-use Test::Builder;
+use Test::Builder 0.88;
 use Module::CPANTS::Analyse 0.87;
 use namespace::clean;
 
