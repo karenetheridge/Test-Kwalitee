@@ -33,7 +33,6 @@ check_tests(
         # this list reflects Module::CPANTS::Analyse 0.87
         # same as in t/01*, except has_readme, use_strict are missing.
         qw(
-            extractable
             has_buildtool
             has_changelog
             has_manifest

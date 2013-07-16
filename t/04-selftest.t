@@ -3,7 +3,6 @@ use warnings FATAL => 'all';
 
 use Test::Kwalitee tests => [
         qw(
-            extractable
             has_changelog
             has_readme
             has_tests

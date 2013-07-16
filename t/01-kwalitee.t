@@ -32,7 +32,6 @@ check_tests(
         }
         # this list reflects Module::CPANTS::Analyse 0.87
         qw(
-            extractable
             has_buildtool
             has_changelog
             has_manifest

@@ -23,7 +23,7 @@ sub import
     my @skip_tests = map { s/^-//; $_ } grep { /^-/ } @{$args{tests}};
 
     # These don't really work unless you have a tarball, so skip them
-    push @skip_tests, qw(extracts_nicely no_generated_files has_proper_version has_version manifest_matches_dist);
+    push @skip_tests, qw(extractable extracts_nicely no_generated_files has_proper_version has_version manifest_matches_dist);
 
     # these tests have never been documented as being available via this dist;
     # skip for now, but in later releases we may add them
@@ -149,13 +149,6 @@ To disable a test, pass its name with a leading minus (C<->):
 As of version 1.09, the tests include:
 
 =over 4
-
-=for stopwords extractable
-
-=item * extractable
-
-This test does nothing without a tarball; it will be removed in a subsequent
-version.
 
 =item * has_buildtool
 
