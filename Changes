@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.08      2013-07-15 17:59:47 PDT-0700 (Karen Etheridge)
     - documentation fixed to reflect what indicators are actually available
     - metric names are no longer hardcoded, so Module::CPANTS::Analyse has
       more freedom to add and remove metrics

@@ -4,7 +4,7 @@ Test::Kwalitee - test the Kwalitee of a distribution before you release it
 
 # VERSION
 
-version 1.07
+version 1.08
 
 # SYNOPSIS
 
@@ -44,42 +44,21 @@ If you ship this test, it will not run for anyone else, because of the
 `RELEASE_TESTING` guard. (You can omit this guard if you move the test to
 xt/release/, which is not run automatically by other users.)
 
-To run only a handful of tests, pass their names to the module's `import()`
-method:
+To run only a handful of tests, pass their names to the module in the `test`
+argument (either in the `use` directive, or when calling `import()` directly):
 
-    eval
-    {
-        require Test::Kwalitee;
-        Test::Kwalitee->import( tests => [ qw( use_strict has_tests ) ] );
-    };
+    use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
 
-To disable a test, pass its name with a leading minus (`-`) to `import()`:
+To disable a test, pass its name with a leading minus (`-`):
 
-    eval
-    {
-        require Test::Kwalitee;
-        Test::Kwalitee->import( tests =>
-            [ qw( -has_test_pod -has_test_pod_coverage ) ]
-        );
-    };
+    use Test::Kwalitee tests => [ qw( -has_test_pod -has_test_pod_coverage ));
 
 As of version 1.00, the tests include:
 
 - extractable
 
-    Is the distribution extractable?
-
-- has\_readme
-
-    Does the distribution have a `README` file?
-
-- has\_manifest
-
-    Does the distribution have a `MANIFEST`?
-
-- has\_meta\_yml
-
-    Does the distribution have a `META.yml` file?
+    This test does nothing without a tarball; it will be removed in a subsequent
+    version.
 
 - has\_buildtool
 
@@ -89,13 +68,25 @@ As of version 1.00, the tests include:
 
     Does the distribution have a changelog?
 
-- no\_symlinks
+- has\_manifest
 
-    Does the distribution have no symlinks?
+    Does the distribution have a `MANIFEST`?
+
+- has\_meta\_yml
+
+    Does the distribution have a `META.yml` file?
+
+- has\_readme
+
+    Does the distribution have a `README` file?
 
 - has\_tests
 
     Does the distribution have tests?
+
+- no\_symlinks
+
+    Does the distribution have no symlinks?
 
 - proper\_libs
 
@@ -105,17 +96,20 @@ As of version 1.00, the tests include:
 
     Does the distribution have no POD errors?
 
-- use\_strict
-
-    Does the distribution files all use strict?
-
 - has\_test\_pod
 
-    Does the distribution have a POD test file?
+    Does the distribution have a test for pod correctness?  (Note that this is a
+    bad test to include in a distribution where it will be run by users; this
+    check will be removed in a subsequent version.)
 
 - has\_test\_pod\_coverage
 
-    Does the distribution have a POD-coverage test file?
+    Does the distribution have a test for pod coverage?  (This test will be
+    removed in a subsequent version; see `has_test_pod` above.)
+
+- use\_strict
+
+    Does the distribution files all use strict?
 
 # ACKNOWLEDGEMENTS
 
@@ -143,3 +137,4 @@ the same terms as the Perl 5 programming language system itself.
 - Gavin Sherlock <sherlock@cpan.org>
 - Karen Etheridge <ether@cpan.org>
 - Kenichi Ishigaki <ishigaki@cpan.org>
+- Nathan Haigh <nathanhaigh@ukonline.co.uk>
