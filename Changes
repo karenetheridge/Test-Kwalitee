@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
     - documentation fixed to reflect what indicators are actually available
+    - metric names are no longer hardcoded, so Module::CPANTS::Analyse has
+      more freedom to add and remove metrics
 
 1.07      2013-06-28 12:22:00 PDT-0700 (Karen Etheridge)
     - now the indicators are run in the exact order they are returned

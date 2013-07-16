@@ -11,14 +11,15 @@ plan skip_all => 'These tests are only for Test::Builder 0.9x'
 
 require Test::Kwalitee;
 
-# prevent Test::Kwalitee from making a plan
-{
-    no warnings 'redefine';
-    *Test::Builder::plan = sub { };
-}
-
 check_tests(
-    sub { Test::Kwalitee->import( tests => [ qw( -use_strict -has_readme ) ] ) },
+    sub {
+        # prevent Test::Kwalitee from making a plan
+        no warnings 'redefine';
+        local *Test::Builder::plan = sub { };
+        local *Test::Builder::done_testing = sub { };
+
+        Test::Kwalitee->import( tests => [ qw( -use_strict -has_readme ) ] );
+    },
     [ map {
             +{
                 name => $_,

@@ -10,16 +10,17 @@ plan skip_all => 'These tests are only for Test::Builder 0.9x'
 
 require Test::Kwalitee;
 
-# prevent Test::Kwalitee from making a plan
-{
-    no warnings 'redefine';
-    *Test::Builder::plan = sub { };
-}
-
-chdir 't/corpus';
+    chdir 't/corpus';
 
 my ($premature, @results) = run_tests(
-    sub { Test::Kwalitee->import( tests => [ qw(has_changelog) ] ) },
+    sub {
+        # prevent Test::Kwalitee from making a plan
+        no warnings 'redefine';
+        local *Test::Builder::plan = sub { };
+        local *Test::Builder::done_testing = sub { };
+
+        Test::Kwalitee->import( tests => [ qw(has_changelog) ] );
+    },
 );
 
 cmp_deeply(
