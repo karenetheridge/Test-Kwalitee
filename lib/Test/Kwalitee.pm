@@ -8,8 +8,7 @@ use Test::Builder 0.88;
 use Module::CPANTS::Analyse 0.87;
 use namespace::clean;
 
-use vars qw( $Test $VERSION );
-
+my $Test;
 BEGIN { $Test = Test::Builder->new() }
 
 sub import
