@@ -6,6 +6,8 @@ Revision history for {{$dist->name}}
       idea anyway (these are often shipped as, and ought to be, in xt/)
     - the extractable test has been removed, as it does nothing in dists
       before there is a tarball present
+    - new tests have been added: all standard kwalitee tests that can be run
+      on a bare distribution without a tarball
 
 1.08      2013-07-15 17:59:47 PDT-0700 (Karen Etheridge)
     - documentation fixed to reflect what indicators are actually available

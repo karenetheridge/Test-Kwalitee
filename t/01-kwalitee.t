@@ -3,6 +3,7 @@ use warnings FATAL => 'all';
 
 use Test::Tester 0.108;
 use Test::More 0.88;
+use Test::Deep;
 
 plan( skip_all => "running in a bare repository (some files missing): skipping" ) if -d '.git';
 
@@ -11,7 +12,7 @@ plan skip_all => 'These tests are only for Test::Builder 0.9x'
 
 require Test::Kwalitee;
 
-check_tests(
+my ($premature, @results) = run_tests(
     sub {
         # prevent Test::Kwalitee from making a plan
         no warnings 'redefine';
@@ -20,15 +21,20 @@ check_tests(
 
         Test::Kwalitee->import;
     },
-    [ map {
-            +{
+);
+
+cmp_deeply(
+    \@results,
+    superbagof(
+        map {
+            superhashof({
                 name => $_,
                 depth => 2,
                 ok => 1,
                 actual_ok => 1,
                 type => '',
                 diag => '',
-            }
+            })
         }
         # this list reflects Module::CPANTS::Analyse 0.87
         qw(
@@ -43,8 +49,8 @@ check_tests(
             no_pod_errors
             use_strict
         )
-    ],
-    'correct tests run',
+    ),
+    'our expected tests do run',
 );
 
 done_testing;

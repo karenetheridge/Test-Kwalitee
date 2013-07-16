@@ -23,14 +23,8 @@ sub import
     my @skip_tests = map { s/^-//; $_ } grep { /^-/ } @{$args{tests}};
 
     # These don't really work unless you have a tarball, so skip them
-    push @skip_tests, qw(extractable extracts_nicely no_generated_files has_proper_version has_version manifest_matches_dist);
-
-    # these tests have never been documented as being available via this dist;
-    # skip for now, but in later releases we may add them
-    push @skip_tests, qw(buildtool_not_executable
-        metayml_conforms_to_known_spec metayml_has_license metayml_is_parsable
-        has_better_auto_install has_working_buildtool
-        has_humanreadable_license valid_signature no_cpants_errors);
+    push @skip_tests, qw(extractable extracts_nicely no_generated_files
+        has_proper_version has_version manifest_matches_dist);
 
     my $analyzer = Module::CPANTS::Analyse->new({
         distdir => $args{basedir},
@@ -150,6 +144,10 @@ As of version 1.09, the tests include:
 
 =over 4
 
+=item * buildtool_not_executable
+
+F<Build.PL>/F<Makefile.PL> should not have an executable bit
+
 =item * has_buildtool
 
 Does the distribution have a build tool file?
@@ -180,19 +178,48 @@ Does the distribution have tests?
 
 Does the distribution have no symlinks?
 
+=item * metayml_is_parsable
+
+Can the the F<META.yml> be parsed?
+
+=item * metayml_has_license
+
+Does the F<META.yml> declare a license?
+
 =for stopwords libs
 
 =item * proper_libs
 
 Does the distribution have proper libs?
 
+=item * has_working_buildtool
+
+If using L<Module::Install>, it is at least version 0.61?
+
+=item * has_better_auto_install
+
+If using L<Module::Install>, it is at least version 0.89?
+
+=item * has_humanreadable_license
+
+Is there a C<LICENSE> section in documentation, and/or a F<LICENSE> file
+present?
+
 =item * no_pod_errors
 
 Does the distribution have no POD errors?
 
+=item * valid_signature
+
+If a F<SIGNATURE> is present, can it be verified?
+
 =item * use_strict
 
 Does the distribution files all use strict?
+
+=item * no_cpants_errors
+
+Were there no errors encountered during CPANTS testing?
 
 =back
 

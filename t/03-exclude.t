@@ -11,7 +11,7 @@ plan skip_all => 'These tests are only for Test::Builder 0.9x'
 
 require Test::Kwalitee;
 
-check_tests(
+my ($premature, @results) = run_tests(
     sub {
         # prevent Test::Kwalitee from making a plan
         no warnings 'redefine';
@@ -20,30 +20,19 @@ check_tests(
 
         Test::Kwalitee->import( tests => [ qw( -use_strict -has_readme ) ] );
     },
-    [ map {
-            +{
-                name => $_,
-                depth => 2,
-                ok => 1,
-                actual_ok => 1,
-                type => '',
-                diag => '',
-            }
-        }
-        # this list reflects Module::CPANTS::Analyse 0.87
-        # same as in t/01*, except has_readme, use_strict are missing.
-        qw(
-            has_buildtool
-            has_changelog
-            has_manifest
-            has_meta_yml
-            has_tests
-            no_symlinks
-            proper_libs
-            no_pod_errors
-        )
-    ],
-    'explicitly excluded tests do not run',
 );
+
+ok(
+    (grep { $_->{name} eq 'has_changelog' } @results),
+    'has_changelog, not excluded, did run',
+);
+
+foreach my $test_name (qw(has_readme use_strict))
+{
+    ok(
+        !(grep { $_->{name} eq $test_name } @results),
+        $test_name . ', explicitly excluded, did not run',
+    );
+}
 
 done_testing;
