@@ -143,24 +143,14 @@ If you ship this test, it will not run for anyone else, because of the
 C<RELEASE_TESTING> guard. (You can omit this guard if you move the test to
 xt/release/, which is not run automatically by other users.)
 
-To run only a handful of tests, pass their names to the module's C<import()>
-method:
+To run only a handful of tests, pass their names to the module in the C<test>
+argument (either in the C<use> directive, or when calling C<import()> directly):
 
-  eval
-  {
-      require Test::Kwalitee;
-      Test::Kwalitee->import( tests => [ qw( use_strict has_tests ) ] );
-  };
+  use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
 
-To disable a test, pass its name with a leading minus (C<->) to C<import()>:
+To disable a test, pass its name with a leading minus (C<->):
 
-  eval
-  {
-      require Test::Kwalitee;
-      Test::Kwalitee->import( tests =>
-          [ qw( -has_test_pod -has_test_pod_coverage ) ]
-      );
-  };
+  use Test::Kwalitee tests => [ qw( -has_test_pod -has_test_pod_coverage ));
 
 As of version 1.00, the tests include:
 
