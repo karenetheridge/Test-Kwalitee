@@ -32,11 +32,6 @@ sub import
         has_better_auto_install has_working_buildtool
         has_humanreadable_license valid_signature no_cpants_errors);
 
-    # these are classified as 'extra' tests, but they have always been
-    # included in Test::Kwalitee (they don't belong, so we will remove them in
-    # a later release)
-    my @include_extra = qw(has_test_pod has_test_pod_coverage);
-
     my $analyzer = Module::CPANTS::Analyse->new({
         distdir => $args{basedir},
         dist    => $args{basedir},
@@ -64,8 +59,7 @@ sub import
 
         for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators() })
         {
-            next if ($indicator->{is_extra} or $indicator->{is_experimental})
-                and not grep { $indicator->{name} eq $_ } @include_extra;
+            next if ($indicator->{is_extra} or $indicator->{is_experimental});
 
             next if @run_tests and not grep { $indicator->{name} eq $_ } @run_tests;
 
@@ -150,9 +144,9 @@ argument (either in the C<use> directive, or when calling C<import()> directly):
 
 To disable a test, pass its name with a leading minus (C<->):
 
-  use Test::Kwalitee tests => [ qw( -has_test_pod -has_test_pod_coverage ));
+  use Test::Kwalitee tests => [ qw( -use_strict has_readme ));
 
-As of version 1.00, the tests include:
+As of version 1.09, the tests include:
 
 =over 4
 
@@ -202,17 +196,6 @@ Does the distribution have proper libs?
 =item * no_pod_errors
 
 Does the distribution have no POD errors?
-
-=item * has_test_pod
-
-Does the distribution have a test for pod correctness?  (Note that this is a
-bad test to include in a distribution where it will be run by users; this
-check will be removed in a subsequent version.)
-
-=item * has_test_pod_coverage
-
-Does the distribution have a test for pod coverage?  (This test will be
-removed in a subsequent version; see C<has_test_pod> above.)
 
 =item * use_strict
 

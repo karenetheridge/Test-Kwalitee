@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - the has_test_pod, has_test_pod_coverage tests have been removed - they
+      are classified as 'extra', and have been largely considered to be a bad
+      idea anyway (these are often shipped as, and ought to be, in xt/)
 
 1.08      2013-07-15 17:59:47 PDT-0700 (Karen Etheridge)
     - documentation fixed to reflect what indicators are actually available

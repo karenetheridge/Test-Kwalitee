@@ -42,8 +42,6 @@ check_tests(
             no_symlinks
             proper_libs
             no_pod_errors
-            has_test_pod
-            has_test_pod_coverage
             use_strict
         )
     ],
