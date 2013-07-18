@@ -142,7 +142,7 @@ To disable a test, pass its name with a leading minus (C<->):
 
   use Test::Kwalitee tests => [ qw( -use_strict has_readme ));
 
-As of version 1.09, the tests include:
+As of Test::Kwalitee 1.09 and L<Module::CPANTS::Analyse> 0.87, the tests include:
 
 =over 4
 
