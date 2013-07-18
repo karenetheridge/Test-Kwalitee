@@ -4,7 +4,7 @@ Test::Kwalitee - test the Kwalitee of a distribution before you release it
 
 # VERSION
 
-version 1.08
+version 1.09
 
 # SYNOPSIS
 
@@ -51,14 +51,13 @@ argument (either in the `use` directive, or when calling `import()` directly):
 
 To disable a test, pass its name with a leading minus (`-`):
 
-    use Test::Kwalitee tests => [ qw( -has_test_pod -has_test_pod_coverage ));
+    use Test::Kwalitee tests => [ qw( -use_strict has_readme ));
 
-As of version 1.00, the tests include:
+As of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse) 0.87, the tests include:
 
-- extractable
+- buildtool\_not\_executable
 
-    This test does nothing without a tarball; it will be removed in a subsequent
-    version.
+    `Build.PL`/`Makefile.PL` should not have an executable bit
 
 - has\_buildtool
 
@@ -88,28 +87,46 @@ As of version 1.00, the tests include:
 
     Does the distribution have no symlinks?
 
+- metayml\_is\_parsable
+
+    Can the the `META.yml` be parsed?
+
+- metayml\_has\_license
+
+    Does the `META.yml` declare a license?
+
 - proper\_libs
 
     Does the distribution have proper libs?
+
+- has\_working\_buildtool
+
+    If using [Module::Install](http://search.cpan.org/perldoc?Module::Install), it is at least version 0.61?
+
+- has\_better\_auto\_install
+
+    If using [Module::Install](http://search.cpan.org/perldoc?Module::Install), it is at least version 0.89?
+
+- has\_humanreadable\_license
+
+    Is there a `LICENSE` section in documentation, and/or a `LICENSE` file
+    present?
 
 - no\_pod\_errors
 
     Does the distribution have no POD errors?
 
-- has\_test\_pod
+- valid\_signature
 
-    Does the distribution have a test for pod correctness?  (Note that this is a
-    bad test to include in a distribution where it will be run by users; this
-    check will be removed in a subsequent version.)
-
-- has\_test\_pod\_coverage
-
-    Does the distribution have a test for pod coverage?  (This test will be
-    removed in a subsequent version; see `has_test_pod` above.)
+    If a `SIGNATURE` is present, can it be verified?
 
 - use\_strict
 
     Does the distribution files all use strict?
+
+- no\_cpants\_errors
+
+    Were there no errors encountered during CPANTS testing?
 
 # ACKNOWLEDGEMENTS
 

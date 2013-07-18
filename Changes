@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.09      2013-07-18 10:34:33 PDT-0700 (Karen Etheridge)
     - the has_test_pod, has_test_pod_coverage tests have been removed - they
       are classified as 'extra', and have been largely considered to be a bad
       idea anyway (these are often shipped as, and ought to be, in xt/)
