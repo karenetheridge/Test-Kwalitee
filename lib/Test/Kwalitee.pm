@@ -25,6 +25,9 @@ sub import
     push @skip_tests, qw(extractable extracts_nicely no_generated_files
         has_proper_version has_version manifest_matches_dist);
 
+    # MCA has a patch to add 'needs_tarball', 'no_build' as flags
+    my @skip_flags = qw(is_extra is_experimental needs_db);
+
     my $analyzer = Module::CPANTS::Analyse->new({
         distdir => $args{basedir},
         dist    => $args{basedir},
@@ -52,7 +55,7 @@ sub import
 
         for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators() })
         {
-            next if ($indicator->{is_extra} or $indicator->{is_experimental});
+            next if grep { $indicator->{$_} } @skip_flags;
 
             next if @run_tests and not grep { $indicator->{name} eq $_ } @run_tests;
 
