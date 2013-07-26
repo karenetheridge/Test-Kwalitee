@@ -9,14 +9,14 @@ use Module::CPANTS::Analyse 0.87;
 use namespace::clean;
 
 my $Test;
-BEGIN { $Test = Test::Builder->new() }
+BEGIN { $Test = Test::Builder->new }
 
 sub import
 {
     my ($self, %args) = @_;
 
     # Note: the basedir option is NOT documented, and may be removed!!!
-    $args{basedir}     ||= cwd();
+    $args{basedir}     ||= cwd;
 
     my @run_tests = grep { /^[^-]/ } @{$args{tests}};
     my @skip_tests = map { s/^-//; $_ } grep { /^-/ } @{$args{tests}};
@@ -47,13 +47,13 @@ sub import
             $a->[1] cmp $b->[1]     # falling back to generator name
         }
         map { [ $_->order, $_ ] }   # Schwartzian transform in
-        @{ $analyzer->mck()->generators() };
+        @{ $analyzer->mck->generators };
 
     for my $generator (@generators)
     {
         $generator->analyse($analyzer);
 
-        for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators() })
+        for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators })
         {
             next if grep { $indicator->{$_} } @skip_flags;
 
@@ -61,7 +61,7 @@ sub import
 
             next if grep { $indicator->{name} eq $_ } @skip_tests;
 
-            _run_indicator($analyzer->d(), $indicator);
+            _run_indicator($analyzer->d, $indicator);
         }
     }
 
@@ -134,7 +134,7 @@ C<RELEASE_TESTING> guard. (You can omit this guard if you move the test to
 xt/release/, which is not run automatically by other users.)
 
 To run only a handful of tests, pass their names to the module in the C<test>
-argument (either in the C<use> directive, or when calling C<import()> directly):
+argument (either in the C<use> directive, or when calling C<import> directly):
 
   use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
 
