@@ -4,6 +4,7 @@ Revision history for {{$dist->name}}
     - we now issue a warning if running when neither AUTHOR_TESTING or
       RELEASE_TESTING environment variables or set
     - test level adjusted, so location of failing test is correct
+    - include a script to dump all metrics ("kwalitee-metrics")
 
 1.09      2013-07-18 10:34:33 PDT-0700 (Karen Etheridge)
     - the has_test_pod, has_test_pod_coverage tests have been removed - they

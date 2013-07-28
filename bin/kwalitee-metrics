@@ -1,0 +1,73 @@
+#!/usr/bin/perl
+
+# PODNAME: kwalitee-metrics
+use strict;
+use warnings;
+use Module::CPANTS::Analyse 0.87;
+
+my $verbose = @ARGV && ($ARGV[0] eq '--verbose' || $ARGV[0] eq '-v');
+
+my $analyzer = Module::CPANTS::Analyse->new({
+    distdir => '.',
+    dist => '.',
+    opts => { no_capture => 1 },
+});
+
+# TODO: MCA needs an API for doing this iteration.
+
+my @generators =
+    map { $_->[1] }             # Schwartzian transform out
+    sort {
+        $a->[0] <=> $b->[0]     # sort by run order
+            ||
+        $a->[1] cmp $b->[1]     # falling back to generator name
+    }
+    map { [ $_->order, $_ ] }   # Schwartzian transform in
+    @{ $analyzer->mck->generators };
+
+
+for my $generator (@generators)
+{
+    print $generator, "\n";
+
+    for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators })
+    {
+
+        print "  $indicator->{name}";
+
+        my @flags = grep { exists $indicator->{$_} }
+            qw(is_extra is_experimental needs_db);
+        print ' (', join(', ', @flags), ')' if @flags;
+        print "\n";
+
+        print "    error: $indicator->{error}\n" if $verbose;
+        print "    remedy: $indicator->{remedy}\n" if $verbose;
+    }
+}
+continue { print "\n"; }
+
+__END__
+
+=pod
+
+=head1 DESCRIPTION
+
+Dumps all of the kwalitee metrics, along with their source class, currently
+installed on the system.
+
+=for stopwords programmatically
+
+If C<--verbose> or C<-v> is passed as an argument, the 'error' and 'remedy'
+strings for the metric are included, as a sort of documentation (the only kind
+programmatically available).
+
+=head1 SEE ALSO
+
+=begin :list
+
+* L<Test::Kwalitee>
+* L<Module::CPANTS::Analyse>
+
+=end :list
+
+=cut
