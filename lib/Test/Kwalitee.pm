@@ -151,86 +151,86 @@ To disable a test, pass its name with a leading minus (C<->):
 
 As of Test::Kwalitee 1.09 and L<Module::CPANTS::Analyse> 0.87, the tests include:
 
-=over 4
+=begin :list
 
-=item * buildtool_not_executable
+* buildtool_not_executable
 
 F<Build.PL>/F<Makefile.PL> should not have an executable bit
 
-=item * has_buildtool
+* has_buildtool
 
 Does the distribution have a build tool file?
 
 =for stopwords changelog
 
-=item * has_changelog
+* has_changelog
 
 Does the distribution have a changelog?
 
-=item * has_manifest
+* has_manifest
 
 Does the distribution have a F<MANIFEST>?
 
-=item * has_meta_yml
+* has_meta_yml
 
 Does the distribution have a F<META.yml> file?
 
-=item * has_readme
+* has_readme
 
 Does the distribution have a F<README> file?
 
-=item * has_tests
+* has_tests
 
 Does the distribution have tests?
 
-=item * no_symlinks
+* no_symlinks
 
 Does the distribution have no symlinks?
 
-=item * metayml_is_parsable
+* metayml_is_parsable
 
 Can the the F<META.yml> be parsed?
 
-=item * metayml_has_license
+* metayml_has_license
 
 Does the F<META.yml> declare a license?
 
 =for stopwords libs
 
-=item * proper_libs
+* proper_libs
 
 Does the distribution have proper libs?
 
-=item * has_working_buildtool
+* has_working_buildtool
 
 If using L<Module::Install>, it is at least version 0.61?
 
-=item * has_better_auto_install
+* has_better_auto_install
 
 If using L<Module::Install>, it is at least version 0.89?
 
-=item * has_humanreadable_license
+* has_humanreadable_license
 
 Is there a C<LICENSE> section in documentation, and/or a F<LICENSE> file
 present?
 
-=item * no_pod_errors
+* no_pod_errors
 
 Does the distribution have no POD errors?
 
-=item * valid_signature
+* valid_signature
 
 If a F<SIGNATURE> is present, can it be verified?
 
-=item * use_strict
+* use_strict
 
 Does the distribution files all use strict?
 
-=item * no_cpants_errors
+* no_cpants_errors
 
 Were there no errors encountered during CPANTS testing?
 
-=back
+=end :list
 
 =head1 ACKNOWLEDGEMENTS
 
