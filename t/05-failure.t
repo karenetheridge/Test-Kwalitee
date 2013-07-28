@@ -9,10 +9,6 @@ use Test::Warnings;
 plan skip_all => 'These tests are only for Test::Builder 0.9x'
     if Test::Builder->VERSION >= 1.005;
 
-require Test::Kwalitee;
-
-    chdir 't/corpus';
-
 my ($premature, @results) = run_tests(
     sub {
         # prevent Test::Kwalitee from making a plan
@@ -23,6 +19,9 @@ my ($premature, @results) = run_tests(
         # we are testing ourselves, so we don't want this warning
         local $ENV{_KWALITEE_NO_WARN} = 1;
 
+        chdir 't/corpus';
+
+        require Test::Kwalitee;
         Test::Kwalitee->import( tests => [ qw(has_changelog) ] );
     },
 );
