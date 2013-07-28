@@ -31,7 +31,7 @@ cmp_deeply(
     [
         superhashof({
             name => 'has_changelog',
-            depth => 2,
+            depth => 1,
             ok => 0,
             actual_ok => 0,
             type => '',

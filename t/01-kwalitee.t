@@ -33,7 +33,7 @@ cmp_deeply(
         map {
             superhashof({
                 name => $_,
-                depth => 2,
+                depth => 1,
                 ok => 1,
                 actual_ok => 1,
                 type => '',

@@ -79,6 +79,7 @@ sub _run_indicator
 
     my $subname = $metric->{name};
 
+    $Test->level($Test->level + 1);
     if (not $Test->ok( $metric->{code}->( $dist ), $subname))
     {
         $Test->diag('Error: ', $metric->{error});
@@ -91,6 +92,7 @@ sub _run_indicator
 
         $Test->diag('Remedy: ', $metric->{remedy});
     }
+    $Test->level($Test->level - 1);
 }
 
 1;
