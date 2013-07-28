@@ -17,3 +17,7 @@ use Test::Kwalitee tests => [
             no_pod_errors
         )
     ];
+
+Test::Builder->new->current_test == 7
+    or die 'ran ' . Test::Builder->new->current_test . ' tests; expected 7!';
+
