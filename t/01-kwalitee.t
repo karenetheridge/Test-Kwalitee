@@ -20,6 +20,9 @@ my ($premature, @results) = run_tests(
         local *Test::Builder::plan = sub { };
         local *Test::Builder::done_testing = sub { };
 
+        # we are testing ourselves, so we don't want this warning
+        local $ENV{_KWALITEE_NO_WARN} = 1;
+
         Test::Kwalitee->import;
     },
 );

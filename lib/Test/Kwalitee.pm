@@ -15,6 +15,11 @@ sub import
 {
     my ($self, %args) = @_;
 
+    warn "These tests should not be running unless AUTHOR_TESTING=1 and/or RELEASE_TESTING=1!\n"
+        # this setting is internal and for this distribution only - there is
+        # no reason for you to need to circumvent this check in any other context.
+        unless $ENV{_KWALITEE_NO_WARN} or $ENV{AUTHOR_TESTING} or $ENV{RELEASE_TESTING};
+
     # Note: the basedir option is NOT documented, and may be removed!!!
     $args{basedir}     ||= cwd;
 

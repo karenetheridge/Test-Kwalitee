@@ -3,6 +3,9 @@ use warnings FATAL => 'all';
 
 use Test::Warnings;
 
+# we are testing ourselves, so we don't want this warning
+BEGIN { $ENV{_KWALITEE_NO_WARN} = 1; }
+
 use Test::Kwalitee tests => [
         qw(
             has_changelog
