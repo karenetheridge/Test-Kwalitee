@@ -7,6 +7,7 @@ use Test::Warnings;
 BEGIN { $ENV{_KWALITEE_NO_WARN} = 1; }
 
 use Test::Kwalitee tests => [
+        # these tests all pass without building the dist
         qw(
             has_changelog
             has_readme
@@ -14,6 +15,5 @@ use Test::Kwalitee tests => [
             no_symlinks
             proper_libs
             no_pod_errors
-            use_strict
         )
     ];
