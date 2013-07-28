@@ -4,6 +4,7 @@ use warnings FATAL => 'all';
 use Test::Tester 0.108;
 use Test::More 0.88;
 use Test::Deep;
+use Test::Warnings;
 
 plan skip_all => 'These tests are only for Test::Builder 0.9x'
     if Test::Builder->VERSION >= 1.005;

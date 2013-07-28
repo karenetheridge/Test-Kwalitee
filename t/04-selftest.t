@@ -1,6 +1,8 @@
 use strict;
 use warnings FATAL => 'all';
 
+use Test::Warnings;
+
 use Test::Kwalitee tests => [
         qw(
             has_changelog
