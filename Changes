@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - added missing kwalitee-metrics executable to the distribution
 
 1.10      2013-07-28 17:18:31 PDT-0700 (Karen Etheridge)
     - we now issue a warning if running when neither AUTHOR_TESTING or
