@@ -4,7 +4,7 @@ Test::Kwalitee - test the Kwalitee of a distribution before you release it
 
 # VERSION
 
-version 1.09
+version 1.10
 
 # SYNOPSIS
 
@@ -45,7 +45,7 @@ If you ship this test, it will not run for anyone else, because of the
 xt/release/, which is not run automatically by other users.)
 
 To run only a handful of tests, pass their names to the module in the `test`
-argument (either in the `use` directive, or when calling `import()` directly):
+argument (either in the `use` directive, or when calling `import` directly):
 
     use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
 
@@ -53,7 +53,10 @@ To disable a test, pass its name with a leading minus (`-`):
 
     use Test::Kwalitee tests => [ qw( -use_strict has_readme ));
 
-As of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse) 0.87, the tests include:
+The list of each available metric currently available on your
+system can be obtained with the `kwalitee-metrics` command (with
+descriptions, if you pass `--verbose` or `-v`, but
+as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse) 0.87, the tests include:
 
 - buildtool\_not\_executable
 
@@ -134,13 +137,15 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
 # SEE ALSO
 
+- [kwalitee-metrics](http://search.cpan.org/perldoc?kwalitee-metrics)
 - [Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse)
 - [Test::Kwalitee::Extra](http://search.cpan.org/perldoc?Test::Kwalitee::Extra)
 - [Dist::Zilla::Plugin::Test::Kwalitee](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::Test::Kwalitee)
 
-# AUTHOR
+# AUTHORS
 
-chromatic <chromatic@wgz.org>
+- chromatic <chromatic@wgz.org>
+- Karen Etheridge <ether@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
@@ -152,6 +157,5 @@ the same terms as the Perl 5 programming language system itself.
 # CONTRIBUTORS
 
 - Gavin Sherlock <sherlock@cpan.org>
-- Karen Etheridge <ether@cpan.org>
 - Kenichi Ishigaki <ishigaki@cpan.org>
 - Nathan Haigh <nathanhaigh@ukonline.co.uk>
