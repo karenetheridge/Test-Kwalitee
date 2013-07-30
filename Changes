@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.11      2013-07-29 17:27:36 PDT-0700 (Karen Etheridge)
     - added missing kwalitee-metrics executable to the distribution
 
 1.10      2013-07-28 17:18:31 PDT-0700 (Karen Etheridge)

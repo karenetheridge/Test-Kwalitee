@@ -4,7 +4,7 @@ Test::Kwalitee - test the Kwalitee of a distribution before you release it
 
 # VERSION
 
-version 1.10
+version 1.11
 
 # SYNOPSIS
 
@@ -137,7 +137,7 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
 # SEE ALSO
 
-- [kwalitee-metrics](http://search.cpan.org/perldoc?kwalitee-metrics)
+- `script/kwalitee-metrics`
 - [Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse)
 - [Test::Kwalitee::Extra](http://search.cpan.org/perldoc?Test::Kwalitee::Extra)
 - [Dist::Zilla::Plugin::Test::Kwalitee](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::Test::Kwalitee)
