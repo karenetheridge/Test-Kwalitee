@@ -27,6 +27,27 @@ my ($premature, @results) = run_tests(
     },
 );
 
+# this list reflects Module::CPANTS::Analyse 0.87
+my @expected = qw(
+    has_buildtool
+    has_changelog
+    has_manifest
+    has_meta_yml
+    has_readme
+    has_tests
+    no_symlinks
+    proper_libs
+    no_pod_errors
+    use_strict
+);
+
+# this somewhat redundant test allows an easier way of seeing which tests failed
+cmp_deeply(
+    [ map { $_->{name} } @results ],
+    superbagof(@expected),
+    'expected tests ran',
+);
+
 cmp_deeply(
     \@results,
     superbagof(
@@ -39,22 +60,9 @@ cmp_deeply(
                 type => '',
                 diag => '',
             })
-        }
-        # this list reflects Module::CPANTS::Analyse 0.87
-        qw(
-            has_buildtool
-            has_changelog
-            has_manifest
-            has_meta_yml
-            has_readme
-            has_tests
-            no_symlinks
-            proper_libs
-            no_pod_errors
-            use_strict
-        )
+        } @expected
     ),
-    'our expected tests do run',
+    'our expected tests ran correctly',
 );
 
 done_testing;
