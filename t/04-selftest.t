@@ -12,8 +12,6 @@ my @expected; BEGIN { @expected = (qw(
     has_readme
     has_tests
     no_symlinks
-    proper_libs
-    no_pod_errors
 )) }
 
 use Test::Kwalitee tests => \@expected;

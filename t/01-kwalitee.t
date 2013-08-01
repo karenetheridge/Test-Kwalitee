@@ -27,7 +27,7 @@ my ($premature, @results) = run_tests(
     },
 );
 
-# this list reflects Module::CPANTS::Analyse 0.87
+# this list reflects Module::CPANTS::Analyse 0.88 (also works on 0.87)
 my @expected = qw(
     has_buildtool
     has_changelog
@@ -36,8 +36,6 @@ my @expected = qw(
     has_readme
     has_tests
     no_symlinks
-    proper_libs
-    no_pod_errors
     use_strict
 );
 

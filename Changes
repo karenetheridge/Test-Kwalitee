@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - adjusted tests to compensate for changes made in Module::CPANTS::Analyse
+      0.88/0.90_01
 
 1.11      2013-07-29 17:27:36 PDT-0700 (Karen Etheridge)
     - added missing kwalitee-metrics executable to the distribution
