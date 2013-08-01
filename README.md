@@ -4,7 +4,7 @@ Test::Kwalitee - test the Kwalitee of a distribution before you release it
 
 # VERSION
 
-version 1.11
+version 1.12
 
 # SYNOPSIS
 
