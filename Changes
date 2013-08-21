@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.13      2013-08-21 20:03:31Z (Karen Etheridge)
     - added missing abstract for kwalitee-metrics script
     - no longer issuing a warning if the test is running from xt/ (see v1.10)
 
