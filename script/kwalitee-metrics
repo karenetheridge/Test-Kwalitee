@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 
+# ABSTRACT: list details of all kwalitee metrics installed on the system
 # PODNAME: kwalitee-metrics
 use strict;
 use warnings;
