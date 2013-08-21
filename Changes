@@ -64,30 +64,30 @@ Revision history for {{$dist->name}}
     - no operational changes - re-releasing under new management via github
       and Dist::Zilla
 
-1.01  Thu Aug 14 2008
+1.01      2008-08-14
     - no entry made
 
-1.00  Thu Aug 14 05:03:02 UTC 2008
+1.00      2008-08-14 05:03:02Z
     - fixed code to work with modern Module::CPANTS::Analyse (Elliot Shank,
         Xavier Caron, Heiko Eißfeldt, and probably others)
     - removed old code I don't want to support (Makefile.PL)
 
-0.30  Fri Mar  3 19:01:56 UTC 2006
+0.30      2006-03-03 19:01:56Z
     - fix test plan count for including and excluding tests (Chris Dolan)
     - improve test coverage to check for that, too
     - added signature and signature test
 
-0.20  Fri Mar  3 07:40:06 UTC 2006
+0.20      2006-03-03 07:40:06Z
     - added documentation
     - fixed include and exclude tests (thanks to Chris Dolan)
     - suppress weird CPANTS warnings (they didn't think I would do it this way)
 
-0.10  Wed Feb 15 05:06:25 UTC 2006
+0.10      2006-02-15 05:06:25Z
     - hey, this version actually works
     - releasing to my web site, not the CPAN
     - still needs docs and, ironically, more tests
 
-0.01  Thu Apr  7 05:57:17 UTC 2005
+0.01      2004-04-07 05:57:17Z
     - proof of concept
     - initial release
     - either know what you're doing or don't use this
