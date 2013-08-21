@@ -2,6 +2,7 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
     - added missing abstract for kwalitee-metrics script
+    - no longer issuing a warning if the test is running from xt/ (see v1.10)
 
 1.12      2013-08-01 16:09:47 PDT-0700 (Karen Etheridge)
     - adjusted tests to compensate for changes made in Module::CPANTS::Analyse
