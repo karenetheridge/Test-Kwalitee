@@ -3,7 +3,7 @@ use warnings FATAL => 'all';
 
 use Test::More;
 use Test::Deep;
-use Test::Warnings ':all';
+use Test::Warnings 0.005 ':all';
 
 # newer Module::CPANTS::Kwalitee::CpantsErrors checks $Test::Kwalitee::VERSION
 BEGIN {
