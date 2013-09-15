@@ -8,12 +8,10 @@ BEGIN { $ENV{_KWALITEE_NO_WARN} = 1; }
 
 # newer Module::CPANTS::Kwalitee::CpantsErrors checks $Test::Kwalitee::VERSION
 BEGIN {
-    if (-d '.git')
-    {
-        $Test::Kwalitee::VERSION = '100';
-        *Test::Kwalitee::VERSION = sub { 100 };
-    }
+    require Test::Kwalitee;
+    $Test::Kwalitee::VERSION = '100' unless $Test::Kwalitee::VERSION;
 }
+
 
 # these tests all pass without building the dist
 my @expected; BEGIN { @expected = (qw(
