@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - re-release with fixed compile test
 
 1.14      2013-09-04 01:38:29Z (Karen Etheridge)
     - updated inaccurate test prereq
