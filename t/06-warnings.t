@@ -3,7 +3,7 @@ use warnings FATAL => 'all';
 
 use Test::More;
 use Test::Deep;
-use Test::Warnings 0.005 ':all';
+use Test::Warnings 0.005 ':no_end_test', ':all';
 
 # newer Module::CPANTS::Kwalitee::CpantsErrors checks $Test::Kwalitee::VERSION
 BEGIN {
@@ -30,4 +30,5 @@ cmp_deeply(
     'no warnings issued with no environment guard from an xt/ test',
 );
 
+had_no_warnings if $ENV{AUTHOR_TESTING};
 done_testing;

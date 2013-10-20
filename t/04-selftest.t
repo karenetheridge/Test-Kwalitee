@@ -1,7 +1,7 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::Warnings;
+use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
 # we are testing ourselves, so we don't want this warning
 BEGIN { $ENV{_KWALITEE_NO_WARN} = 1; }

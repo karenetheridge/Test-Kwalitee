@@ -4,7 +4,7 @@ use warnings FATAL => 'all';
 use Test::Tester 0.108;
 use Test::More 0.88;
 use Test::Deep;
-use Test::Warnings;
+use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
 plan( skip_all => "running in a bare repository (some files missing): skipping" ) if -d '.git';
 
