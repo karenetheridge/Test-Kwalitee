@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - oops, fixed tests that break when AUTHOR_TESTING is not set
 
 1.16      2013-10-20 21:44:53Z (Karen Etheridge)
     - now printing even more diagnostics on error (as much as we have

@@ -22,6 +22,7 @@ my @expected; BEGIN { @expected = (qw(
 
 use Test::Kwalitee tests => \@expected;
 
-Test::Builder->new->current_test == (@expected + 1)
-    or die 'ran ' . Test::Builder->new->current_test . ' tests; expected ' . (@expected + 1) . '!';
+my $count = @expected + ($ENV{AUTHOR_TESTING} ? 1 : 0);
+Test::Builder->new->current_test == $count
+    or die 'ran ' . Test::Builder->new->current_test . ' tests; expected ' . $count . '!';
 
