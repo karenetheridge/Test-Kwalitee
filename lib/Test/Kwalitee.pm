@@ -43,21 +43,7 @@ sub import
         opts => { no_capture => 1 },
     });
 
-    # get generators list in the order they should run, but also keep the
-    # order consistent between runs
-    # (TODO: remove, once MCK can itself sort properly -- see
-    # https://github.com/daxim/Module-CPANTS-Analyse/pull/12)
-    my @generators =
-        map { $_->[1] }             # Schwartzian transform out
-        sort {
-            $a->[0] <=> $b->[0]     # sort by run order
-                ||
-            $a->[1] cmp $b->[1]     # falling back to generator name
-        }
-        map { [ $_->order, $_ ] }   # Schwartzian transform in
-        @{ $analyzer->mck->generators };
-
-    for my $generator (@generators)
+    for my $generator (@{ $analyzer->mck->generators })
     {
         $generator->analyse($analyzer);
 
