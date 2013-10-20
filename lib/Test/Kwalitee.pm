@@ -5,7 +5,7 @@ package Test::Kwalitee;
 
 use Cwd;
 use Test::Builder 0.88;
-use Module::CPANTS::Analyse 0.87;
+use Module::CPANTS::Analyse 0.92;
 use namespace::clean;
 
 my $Test;
