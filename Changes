@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - now printing even more diagnostics on error (as much as we have
+      available)
 
 1.15      2013-09-25 03:12:20Z (Karen Etheridge)
     - re-release with fixed compile test

@@ -83,15 +83,23 @@ sub _run_indicator
     my $subname = $metric->{name};
 
     $Test->level($Test->level + 1);
-    if (not $Test->ok( $metric->{code}->( $dist ), $subname))
+    if (not $Test->ok( $metric->{code}->($dist), $subname))
     {
         $Test->diag('Error: ', $metric->{error});
 
-        $Test->diag('Details: ',
+        # NOTE: this is poking into the analyse structures; we really should
+        # have a formal API for accessing this.
+
+        # attempt to print all the extra information we have
+        my @details;
+        push @details, $metric->{details}->($dist)
+            if $metric->{details} and ref $metric->{details} eq 'CODE';
+        push @details,
             (ref $dist->{error}{$subname}
-                ? join("\n", @{$dist->{error}{$subname}})
-                : $dist->{error}{$subname}))
+                ? @{$dist->{error}{$subname}}
+                : $dist->{error}{$subname})
             if defined $dist->{error} and defined $dist->{error}{$subname};
+        $Test->diag("Details:\n", join("\n", @details)) if @details;
 
         $Test->diag('Remedy: ', $metric->{remedy});
     }

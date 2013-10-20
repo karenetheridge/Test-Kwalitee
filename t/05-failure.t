@@ -35,7 +35,7 @@ cmp_deeply(
             ok => 0,
             actual_ok => 0,
             type => '',
-            diag => re(qr/^Error: The distribution ...+\nRemedy: Add a/),
+            diag => re(qr/^Error: The distribution ...+\nRemedy: Add a/s),
         }),
     ],
     'test fails, with diagnosis',
