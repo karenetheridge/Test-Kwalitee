@@ -56,7 +56,7 @@ To disable a test, pass its name with a leading minus (`-`):
 The list of each available metric currently available on your
 system can be obtained with the `kwalitee-metrics` command (with
 descriptions, if you pass `--verbose` or `-v`, but
-as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse) 0.87, the tests include:
+as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](https://metacpan.org/pod/Module::CPANTS::Analyse) 0.87, the tests include:
 
 - buildtool\_not\_executable
 
@@ -92,7 +92,7 @@ as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](http://search.cpan.org/p
 
 - metayml\_is\_parsable
 
-    Can the the `META.yml` be parsed?
+    Can the `META.yml` be parsed?
 
 - metayml\_has\_license
 
@@ -104,11 +104,11 @@ as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](http://search.cpan.org/p
 
 - has\_working\_buildtool
 
-    If using [Module::Install](http://search.cpan.org/perldoc?Module::Install), it is at least version 0.61?
+    If using [Module::Install](https://metacpan.org/pod/Module::Install), it is at least version 0.61?
 
 - has\_better\_auto\_install
 
-    If using [Module::Install](http://search.cpan.org/perldoc?Module::Install), it is at least version 0.89?
+    If using [Module::Install](https://metacpan.org/pod/Module::Install), it is at least version 0.89?
 
 - has\_humanreadable\_license
 
@@ -138,9 +138,9 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 # SEE ALSO
 
 - `script/kwalitee-metrics`
-- [Module::CPANTS::Analyse](http://search.cpan.org/perldoc?Module::CPANTS::Analyse)
-- [Test::Kwalitee::Extra](http://search.cpan.org/perldoc?Test::Kwalitee::Extra)
-- [Dist::Zilla::Plugin::Test::Kwalitee](http://search.cpan.org/perldoc?Dist::Zilla::Plugin::Test::Kwalitee)
+- [Module::CPANTS::Analyse](https://metacpan.org/pod/Module::CPANTS::Analyse)
+- [Test::Kwalitee::Extra](https://metacpan.org/pod/Test::Kwalitee::Extra)
+- [Dist::Zilla::Plugin::Test::Kwalitee](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::Kwalitee)
 
 # AUTHORS
 
@@ -156,6 +156,7 @@ the same terms as the Perl 5 programming language system itself.
 
 # CONTRIBUTORS
 
+- David Steinbrunner <dsteinbrunner@pobox.com>
 - Gavin Sherlock <sherlock@cpan.org>
 - Kenichi Ishigaki <ishigaki@cpan.org>
 - Nathan Haigh <nathanhaigh@ukonline.co.uk>
