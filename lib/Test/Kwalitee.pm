@@ -189,7 +189,7 @@ Does the distribution have no symlinks?
 
 * metayml_is_parsable
 
-Can the the F<META.yml> be parsed?
+Can the F<META.yml> be parsed?
 
 * metayml_has_license
 
