@@ -233,7 +233,7 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
 =begin :list
 
-* F<script/kwalitee-metrics>
+* L<kwalitee-metrics> (in this distribution)
 * L<Module::CPANTS::Analyse>
 * L<Test::Kwalitee::Extra>
 * L<Dist::Zilla::Plugin::Test::Kwalitee>
