@@ -153,10 +153,6 @@ as of Test::Kwalitee 1.09 and L<Module::CPANTS::Analyse> 0.87, the tests include
 
 =begin :list
 
-* buildtool_not_executable
-
-F<Build.PL>/F<Makefile.PL> should not have an executable bit
-
 * has_buildtool
 
 Does the distribution have a build tool file?
@@ -166,6 +162,15 @@ Does the distribution have a build tool file?
 * has_changelog
 
 Does the distribution have a changelog?
+
+* has_humanreadable_license
+
+Is there a C<LICENSE> section in documentation, and/or a F<LICENSE> file
+present?
+
+* has_license_in_source_file
+
+Is there license information in any of the source files?
 
 * has_manifest
 
@@ -183,52 +188,36 @@ Does the distribution have a F<README> file?
 
 Does the distribution have tests?
 
-* no_symlinks
+* metayml_conforms_to_known_spec
 
-Does the distribution have no symlinks?
+Does META.yml conform to any recognised META.yml specification?
+(For specs see
+L<http://module-build.sourceforge.net/META-spec-current.html>)
 
 * metayml_is_parsable
 
 Can the F<META.yml> be parsed?
 
-* metayml_has_license
+* no_broken_auto_install
 
-Does the F<META.yml> declare a license?
+Is the distribution using an old version of Module::Install? Versions of
+Module::Install prior to 0.89 do not detect correcty that CPAN/CPANPLUS
+shell is used.
 
-=for stopwords libs
+* no_broken_module_install
 
-* proper_libs
+Does the distribution use an obsolete version of Module::Install?
+Versions of Module::Install prior to 0.61 might not work on some systems at
+all. Additionally if the Makefile.PL uses the 'auto_install()'
+feature, you need at least version 0.64. Also, 1.04 is known to be broken.
 
-Does the distribution have proper libs?
+* no_symlinks
 
-* has_working_buildtool
-
-If using L<Module::Install>, it is at least version 0.61?
-
-* has_better_auto_install
-
-If using L<Module::Install>, it is at least version 0.89?
-
-* has_humanreadable_license
-
-Is there a C<LICENSE> section in documentation, and/or a F<LICENSE> file
-present?
-
-* no_pod_errors
-
-Does the distribution have no POD errors?
-
-* valid_signature
-
-If a F<SIGNATURE> is present, can it be verified?
+Does the distribution have no symlinks?
 
 * use_strict
 
 Does the distribution files all use strict?
-
-* no_cpants_errors
-
-Were there no errors encountered during CPANTS testing?
 
 =end :list
 
