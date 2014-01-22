@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - updated list of available metrics
 
 1.17      2013-10-20 21:49:31Z
     - oops, fixed tests that break when AUTHOR_TESTING is not set

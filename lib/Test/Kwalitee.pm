@@ -149,7 +149,7 @@ To disable a test, pass its name with a leading minus (C<->):
 The list of each available metric currently available on your
 system can be obtained with the C<kwalitee-metrics> command (with
 descriptions, if you pass C<--verbose> or C<-v>, but
-as of Test::Kwalitee 1.09 and L<Module::CPANTS::Analyse> 0.87, the tests include:
+as of Test::Kwalitee 1.09 and L<Module::CPANTS::Analyse> 0.92, the tests include:
 
 =begin :list
 
@@ -190,6 +190,8 @@ Does the distribution have tests?
 
 * metayml_conforms_to_known_spec
 
+=for stopwords recognised
+
 Does META.yml conform to any recognised META.yml specification?
 (For specs see
 L<http://module-build.sourceforge.net/META-spec-current.html>)
@@ -200,15 +202,15 @@ Can the F<META.yml> be parsed?
 
 * no_broken_auto_install
 
-Is the distribution using an old version of Module::Install? Versions of
-Module::Install prior to 0.89 do not detect correcty that CPAN/CPANPLUS
+Is the distribution using an old version of L<Module::Install>? Versions of
+L<Module::Install> prior to 0.89 do not detect correctly that C<CPAN>/C<CPANPLUS>
 shell is used.
 
 * no_broken_module_install
 
-Does the distribution use an obsolete version of Module::Install?
-Versions of Module::Install prior to 0.61 might not work on some systems at
-all. Additionally if the Makefile.PL uses the 'auto_install()'
+Does the distribution use an obsolete version of L<Module::Install>?
+Versions of L<Module::Install> prior to 0.61 might not work on some systems at
+all. Additionally if the F<Makefile.PL> uses the C<auto_install()>
 feature, you need at least version 0.64. Also, 1.04 is known to be broken.
 
 * no_symlinks
