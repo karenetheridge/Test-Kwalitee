@@ -4,7 +4,7 @@ Test::Kwalitee - test the Kwalitee of a distribution before you release it
 
 # VERSION
 
-version 1.17
+version 1.18
 
 # SYNOPSIS
 
@@ -56,11 +56,7 @@ To disable a test, pass its name with a leading minus (`-`):
 The list of each available metric currently available on your
 system can be obtained with the `kwalitee-metrics` command (with
 descriptions, if you pass `--verbose` or `-v`, but
-as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](https://metacpan.org/pod/Module::CPANTS::Analyse) 0.87, the tests include:
-
-- buildtool\_not\_executable
-
-    `Build.PL`/`Makefile.PL` should not have an executable bit
+as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](https://metacpan.org/pod/Module::CPANTS::Analyse) 0.92, the tests include:
 
 - has\_buildtool
 
@@ -69,6 +65,15 @@ as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](https://metacpan.org/pod
 - has\_changelog
 
     Does the distribution have a changelog?
+
+- has\_humanreadable\_license
+
+    Is there a `LICENSE` section in documentation, and/or a `LICENSE` file
+    present?
+
+- has\_license\_in\_source\_file
+
+    Is there license information in any of the source files?
 
 - has\_manifest
 
@@ -86,50 +91,36 @@ as of Test::Kwalitee 1.09 and [Module::CPANTS::Analyse](https://metacpan.org/pod
 
     Does the distribution have tests?
 
-- no\_symlinks
+- metayml\_conforms\_to\_known\_spec
 
-    Does the distribution have no symlinks?
+    Does META.yml conform to any recognised META.yml specification?
+    (For specs see
+    [http://module-build.sourceforge.net/META-spec-current.html](http://module-build.sourceforge.net/META-spec-current.html))
 
 - metayml\_is\_parsable
 
     Can the `META.yml` be parsed?
 
-- metayml\_has\_license
+- no\_broken\_auto\_install
 
-    Does the `META.yml` declare a license?
+    Is the distribution using an old version of [Module::Install](https://metacpan.org/pod/Module::Install)? Versions of
+    [Module::Install](https://metacpan.org/pod/Module::Install) prior to 0.89 do not detect correctly that `CPAN`/`CPANPLUS`
+    shell is used.
 
-- proper\_libs
+- no\_broken\_module\_install
 
-    Does the distribution have proper libs?
+    Does the distribution use an obsolete version of [Module::Install](https://metacpan.org/pod/Module::Install)?
+    Versions of [Module::Install](https://metacpan.org/pod/Module::Install) prior to 0.61 might not work on some systems at
+    all. Additionally if the `Makefile.PL` uses the `auto_install()`
+    feature, you need at least version 0.64. Also, 1.04 is known to be broken.
 
-- has\_working\_buildtool
+- no\_symlinks
 
-    If using [Module::Install](https://metacpan.org/pod/Module::Install), it is at least version 0.61?
-
-- has\_better\_auto\_install
-
-    If using [Module::Install](https://metacpan.org/pod/Module::Install), it is at least version 0.89?
-
-- has\_humanreadable\_license
-
-    Is there a `LICENSE` section in documentation, and/or a `LICENSE` file
-    present?
-
-- no\_pod\_errors
-
-    Does the distribution have no POD errors?
-
-- valid\_signature
-
-    If a `SIGNATURE` is present, can it be verified?
+    Does the distribution have no symlinks?
 
 - use\_strict
 
     Does the distribution files all use strict?
-
-- no\_cpants\_errors
-
-    Were there no errors encountered during CPANTS testing?
 
 # ACKNOWLEDGEMENTS
 
@@ -137,7 +128,7 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
 # SEE ALSO
 
-- `script/kwalitee-metrics`
+- [kwalitee-metrics](https://metacpan.org/pod/kwalitee-metrics) (in this distribution)
 - [Module::CPANTS::Analyse](https://metacpan.org/pod/Module::CPANTS::Analyse)
 - [Test::Kwalitee::Extra](https://metacpan.org/pod/Test::Kwalitee::Extra)
 - [Dist::Zilla::Plugin::Test::Kwalitee](https://metacpan.org/pod/Dist::Zilla::Plugin::Test::Kwalitee)
@@ -160,3 +151,4 @@ the same terms as the Perl 5 programming language system itself.
 - Gavin Sherlock <sherlock@cpan.org>
 - Kenichi Ishigaki <ishigaki@cpan.org>
 - Nathan Haigh <nathanhaigh@ukonline.co.uk>
+- Zoffix Znet <cpan@zoffix.com>

@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.18      2014-01-22 04:47:40Z
     - updated list of available metrics
 
 1.17      2013-10-20 21:49:31Z
