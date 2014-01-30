@@ -150,7 +150,7 @@ To disable a test, pass its name with a leading minus (C<->):
 The list of each available metric currently available on your
 system can be obtained with the C<kwalitee-metrics> command (with
 descriptions, if you pass C<--verbose> or C<-v>, but
-as of Test::Kwalitee 1.09 and L<Module::CPANTS::Analyse> 0.92, the tests include:
+as of Test::Kwalitee 1.18 and L<Module::CPANTS::Analyse> 0.92, the tests include:
 
 =begin :list
 
