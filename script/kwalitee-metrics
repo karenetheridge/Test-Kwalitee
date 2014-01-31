@@ -29,7 +29,7 @@ my @generators =
 
 for my $generator (@generators)
 {
-    print $generator, "\n";
+    print $generator, ' ', $generator->VERSION, "\n";
 
     for my $indicator (sort { $a->{name} cmp $b->{name} } @{ $generator->kwalitee_indicators })
     {

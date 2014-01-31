@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - kwalitee-metrics script now includes the module version as well as the
+      name, for each metric provided
 
 1.18      2014-01-22 04:47:40Z
     - updated list of available metrics
