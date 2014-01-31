@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package Test::Kwalitee;
-# ABSTRACT: test the Kwalitee of a distribution before you release it
+# ABSTRACT: Test the Kwalitee of a distribution before you release it
 # vim: set ts=8 sw=4 tw=78 et :
 
 use Cwd;
