@@ -4,5 +4,5 @@ use warnings FATAL => 'all';
 use Test::More;
 use Test::CleanNamespaces;
 
-namespaces_clean(grep { !/::Conflicts$/ } Test::CleanNamespaces->find_modules);
+all_namespaces_clean();
 done_testing;
