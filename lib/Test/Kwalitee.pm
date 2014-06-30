@@ -237,7 +237,7 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
 * L<kwalitee-metrics> (in this distribution)
 * L<Module::CPANTS::Analyse>
-* L<cpants_lint.pl> (in L<Module::CPANTS::Analyse>; requires a tarball archive)
+* L<App::CPANTS::Lint>
 * L<Test::Kwalitee::Extra>
 * L<Dist::Zilla::Plugin::Test::Kwalitee>
 
