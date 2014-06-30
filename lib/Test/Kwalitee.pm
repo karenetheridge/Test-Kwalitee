@@ -2,6 +2,7 @@ use strict;
 use warnings;
 package Test::Kwalitee;
 # ABSTRACT: Test the Kwalitee of a distribution before you release it
+# KEYWORDS: testing tests kwalitee CPANTS quality lint errors critic
 # vim: set ts=8 sw=4 tw=78 et :
 
 use Cwd;
