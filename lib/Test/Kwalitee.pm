@@ -151,9 +151,13 @@ To disable a test, pass its name with a leading minus (C<->):
 The list of each available metric currently available on your
 system can be obtained with the C<kwalitee-metrics> command (with
 descriptions, if you pass C<--verbose> or C<-v>, but
-as of Test::Kwalitee 1.18 and L<Module::CPANTS::Analyse> 0.92, the tests include:
+as of Test::Kwalitee 1.19 and L<Module::CPANTS::Analyse> 0.93_01, the tests include:
 
 =begin :list
+
+* has_abstract_in_pod
+
+Does the main module have a C<=head1 NAME> section with a short description of the distribution?
 
 * has_buildtool
 

@@ -5,6 +5,7 @@ Revision history for {{$dist->name}}
       name, for each metric provided
     - remove test that is rendered invalid with upcoming changes to
       Test::Builder (1.005+)
+    - document new metrics added in Module::CPANTS::Analyse 0.93_01
 
 1.18      2014-01-22 04:47:40Z
     - updated list of available metrics
