@@ -1,0 +1,252 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Test::Kwalitee - Test the Kwalitee of a distribution before you release it
+
+=head1 VERSION
+
+version 1.19
+
+=head1 SYNOPSIS
+
+  # in a separate test file
+
+  BEGIN {
+      unless ($ENV{RELEASE_TESTING})
+      {
+          use Test::More;
+          plan(skip_all => 'these tests are for release candidate testing');
+      }
+  }
+
+  use Test::Kwalitee;
+
+=head1 DESCRIPTION
+
+=for stopwords CPANTS
+
+Kwalitee is an automatically-measurable gauge of how good your software is.
+That's very different from quality, which a computer really can't measure in a
+general sense.  (If you can, you've solved a hard problem in computer science.)
+
+In the world of the CPAN, the CPANTS project (CPAN Testing Service; also a
+funny acronym on its own) measures Kwalitee with several metrics.  If you plan
+to release a distribution to the CPAN -- or even within your own organization
+-- testing its Kwalitee before creating a release can help you improve your
+quality as well.
+
+C<Test::Kwalitee> and a short test file will do this for you automatically.
+
+=head1 USAGE
+
+Create a test file as shown in the synopsis.  Run it.  It will run all of the
+potential Kwalitee tests on the current distribution, if possible.  If any
+fail, it will report those as regular diagnostics.
+
+If you ship this test, it will not run for anyone else, because of the
+C<RELEASE_TESTING> guard. (You can omit this guard if you move the test to
+xt/release/, which is not run automatically by other users.)
+
+To run only a handful of tests, pass their names to the module in the C<test>
+argument (either in the C<use> directive, or when calling C<import> directly):
+
+  use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
+
+To disable a test, pass its name with a leading minus (C<->):
+
+  use Test::Kwalitee tests => [ qw( -use_strict has_readme ));
+
+The list of each available metric currently available on your
+system can be obtained with the C<kwalitee-metrics> command (with
+descriptions, if you pass C<--verbose> or C<-v>, but
+as of Test::Kwalitee 1.19 and L<Module::CPANTS::Analyse> 0.93_01, the tests include:
+
+=over 4
+
+=item *
+
+has_abstract_in_pod
+
+Does the main module have a C<=head1 NAME> section with a short description of the distribution?
+
+=item *
+
+has_buildtool
+
+Does the distribution have a build tool file?
+
+=for stopwords changelog
+
+=item *
+
+has_changelog
+
+Does the distribution have a changelog?
+
+=item *
+
+has_humanreadable_license
+
+Is there a C<LICENSE> section in documentation, and/or a F<LICENSE> file
+present?
+
+=item *
+
+has_license_in_source_file
+
+Is there license information in any of the source files?
+
+=item *
+
+has_manifest
+
+Does the distribution have a F<MANIFEST>?
+
+=item *
+
+has_meta_yml
+
+Does the distribution have a F<META.yml> file?
+
+=item *
+
+has_readme
+
+Does the distribution have a F<README> file?
+
+=item *
+
+has_tests
+
+Does the distribution have tests?
+
+=item *
+
+metayml_conforms_to_known_spec
+
+=for stopwords recognised
+
+Does META.yml conform to any recognised META.yml specification?
+(For specs see
+L<http://module-build.sourceforge.net/META-spec-current.html>)
+
+=item *
+
+metayml_is_parsable
+
+Can the F<META.yml> be parsed?
+
+=item *
+
+no_broken_auto_install
+
+Is the distribution using an old version of L<Module::Install>? Versions of
+L<Module::Install> prior to 0.89 do not detect correctly that C<CPAN>/C<CPANPLUS>
+shell is used.
+
+=item *
+
+no_broken_module_install
+
+Does the distribution use an obsolete version of L<Module::Install>?
+Versions of L<Module::Install> prior to 0.61 might not work on some systems at
+all. Additionally if the F<Makefile.PL> uses the C<auto_install()>
+feature, you need at least version 0.64. Also, 1.04 is known to be broken.
+
+=item *
+
+no_symlinks
+
+Does the distribution have no symlinks?
+
+=item *
+
+use_strict
+
+Does the distribution files all use strict?
+
+=back
+
+=head1 ACKNOWLEDGEMENTS
+
+=for stopwords Klausner Dolan
+
+With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item *
+
+L<kwalitee-metrics> (in this distribution)
+
+=item *
+
+L<Module::CPANTS::Analyse>
+
+=item *
+
+L<App::CPANTS::Lint>
+
+=item *
+
+L<Test::Kwalitee::Extra>
+
+=item *
+
+L<Dist::Zilla::Plugin::Test::Kwalitee>
+
+=back
+
+=head1 AUTHORS
+
+=over 4
+
+=item *
+
+chromatic <chromatic@wgz.org>
+
+=item *
+
+Karen Etheridge <ether@cpan.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2005 by chromatic.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=head1 CONTRIBUTORS
+
+=over 4
+
+=item *
+
+David Steinbrunner <dsteinbrunner@pobox.com>
+
+=item *
+
+Gavin Sherlock <sherlock@cpan.org>
+
+=item *
+
+Kenichi Ishigaki <ishigaki@cpan.org>
+
+=item *
+
+Nathan Haigh <nathanhaigh@ukonline.co.uk>
+
+=item *
+
+Zoffix Znet <cpan@zoffix.com>
+
+=back
+
+=cut
