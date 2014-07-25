@@ -244,6 +244,8 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 * L<App::CPANTS::Lint>
 * L<Test::Kwalitee::Extra>
 * L<Dist::Zilla::Plugin::Test::Kwalitee>
+* L<Dist::Zilla::Plugin::Test::Kwalitee::Extra>
+* L<Dist::Zilla::App::Command::kwalitee>
 
 =end :list
 
