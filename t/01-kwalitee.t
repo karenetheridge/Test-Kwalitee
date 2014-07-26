@@ -8,9 +8,6 @@ use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
 plan( skip_all => "running in a bare repository (some files missing): skipping" ) if -d '.git';
 
-plan skip_all => 'These tests are only for Test::Builder 0.9x'
-    if Test::Builder->VERSION >= 1.005;
-
 require Test::Kwalitee;
 
 my ($premature, @results) = run_tests(

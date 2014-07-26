@@ -6,9 +6,6 @@ use Test::More 0.88;
 use Test::Deep;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
-plan skip_all => 'These tests are only for Test::Builder 0.9x'
-    if Test::Builder->VERSION >= 1.005;
-
 my ($premature, @results) = run_tests(
     sub {
         # prevent Test::Kwalitee from making a plan
