@@ -10,12 +10,33 @@ use Test::Builder 0.88;
 use Module::CPANTS::Analyse 0.92;
 use namespace::clean;
 
+use parent 'Exporter';
+our @EXPORT_OK = qw(kwalitee_ok);
+
 my $Test;
 BEGIN { $Test = Test::Builder->new }
 
 sub import
 {
-    my ($self, %args) = @_;
+    my ($class, @args) = @_;
+
+    # back-compatibility mode!
+    if (@args % 2 == 0)
+    {
+        $Test->level($Test->level + 1);
+        my %args = @args;
+        kwalitee_ok(@{$args{tests}});
+        $Test->done_testing;
+        return;
+    }
+
+    # otherwise, do what a regular import would do...
+    $class->export_to_level(1, @_);
+}
+
+sub kwalitee_ok
+{
+    my (@tests) = @_;
 
     warn "These tests should not be running unless AUTHOR_TESTING=1 and/or RELEASE_TESTING=1!\n"
         # this setting is internal and for this distribution only - there is
@@ -23,10 +44,11 @@ sub import
         # Please DO NOT enable this test to run for users, as it can fail
         # unexpectedly as parts of the toolchain changes!
         unless $ENV{_KWALITEE_NO_WARN} or $ENV{AUTHOR_TESTING} or $ENV{RELEASE_TESTING}
-            or (caller)[1] =~ /^xt/;
+            or (caller)[1] =~ /^xt/
+            or ((caller)[0]->isa(__PACKAGE__) and (caller(1))[1] =~ /^xt/);
 
-    my @run_tests = grep { /^[^-]/ } @{$args{tests}};
-    my @skip_tests = map { s/^-//; $_ } grep { /^-/ } @{$args{tests}};
+    my @run_tests = grep { /^[^-]/ } @tests;
+    my @skip_tests = map { s/^-//; $_ } grep { /^-/ } @tests;
 
     # These don't really work unless you have a tarball, so skip them
     push @skip_tests, qw(extractable extracts_nicely no_generated_files
@@ -59,8 +81,6 @@ sub import
             _run_indicator($analyzer->d, $indicator);
         }
     }
-
-    $Test->done_testing;
 }
 
 sub _run_indicator
@@ -100,17 +120,17 @@ __END__
 
 =head1 SYNOPSIS
 
-  # in a separate test file
+In a separate test file:
 
+  use Test::More;
   BEGIN {
-      unless ($ENV{RELEASE_TESTING})
-      {
-          use Test::More;
-          plan(skip_all => 'these tests are for release candidate testing');
-      }
+      plan skip_all => 'these tests are for release candidate testing'
+          unless $ENV{RELEASE_TESTING};
   }
 
-  use Test::Kwalitee;
+  use Test::Kwalitee 'kwalitee_ok';
+  kwalitee_ok();
+  done_testing;
 
 =head1 DESCRIPTION
 
@@ -138,14 +158,35 @@ If you ship this test, it will not run for anyone else, because of the
 C<RELEASE_TESTING> guard. (You can omit this guard if you move the test to
 xt/release/, which is not run automatically by other users.)
 
-To run only a handful of tests, pass their names to the module in the C<test>
-argument (either in the C<use> directive, or when calling C<import> directly):
+=head1 FUNCTIONS
 
-  use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
+=head2 kwalitee_ok
+
+With no arguments, runs all standard metrics.
+
+To run only a handful of tests, pass their name(s) to the C<kwalitee_ok>
+function:
+
+  kwalitee_ok(qw( use_strict has_tests ));
 
 To disable a test, pass its name with a leading minus (C<->):
 
-  use Test::Kwalitee tests => [ qw( -use_strict has_readme ));
+  kwalitee_ok(qw( -use_strict has_readme ));
+
+=head1 BACK-COMPATIBILITY MODE
+
+Previous versions of this module ran tests directly via the C<import> sub, like so:
+
+    use Test::Kwalitee;
+    # and that's it!
+
+...but this is problematic if you need to perform some setup first, as you
+would need to do that in a C<BEGIN> block, or manually call C<import>. This is
+messy!
+
+However, this calling path is still available, e.g.:
+
+  use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
 
 =head1 METRICS
 

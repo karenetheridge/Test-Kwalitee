@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - running the tests via the import method directly has been deprecated;
+      the new kwalitee_ok() function is added to provide a more sane and
+      logical layout to your tests.
 
 1.19      2014-07-19 17:01:08Z
     - kwalitee-metrics script now includes the module version as well as the
