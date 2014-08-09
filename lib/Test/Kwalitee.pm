@@ -148,6 +148,8 @@ To disable a test, pass its name with a leading minus (C<->):
 
   use Test::Kwalitee tests => [ qw( -use_strict has_readme ));
 
+=head1 METRICS
+
 The list of each available metric currently available on your
 system can be obtained with the C<kwalitee-metrics> command (with
 descriptions, if you pass C<--verbose> or C<-v>, but
