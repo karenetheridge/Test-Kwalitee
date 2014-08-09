@@ -25,9 +25,6 @@ sub import
         unless $ENV{_KWALITEE_NO_WARN} or $ENV{AUTHOR_TESTING} or $ENV{RELEASE_TESTING}
             or (caller)[1] =~ /^xt/;
 
-    # Note: the basedir option is NOT documented, and may be removed!!!
-    $args{basedir}     ||= cwd;
-
     my @run_tests = grep { /^[^-]/ } @{$args{tests}};
     my @skip_tests = map { s/^-//; $_ } grep { /^-/ } @{$args{tests}};
 
@@ -38,9 +35,11 @@ sub import
     # MCA has a patch to add 'needs_tarball', 'no_build' as flags
     my @skip_flags = qw(is_extra is_experimental needs_db);
 
+    my $basedir = cwd;
+
     my $analyzer = Module::CPANTS::Analyse->new({
-        distdir => $args{basedir},
-        dist    => $args{basedir},
+        distdir => $basedir,
+        dist    => $basedir,
         # for debugging..
         opts => { no_capture => 1 },
     });
