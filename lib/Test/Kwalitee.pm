@@ -25,9 +25,9 @@ sub import
     {
         $Test->level($Test->level + 1);
         my %args = @args;
-        kwalitee_ok(@{$args{tests}});
+        my $result = kwalitee_ok(@{$args{tests}});
         $Test->done_testing;
-        return;
+        return $result;
     }
 
     # otherwise, do what a regular import would do...
@@ -66,6 +66,8 @@ sub kwalitee_ok
         opts => { no_capture => 1 },
     });
 
+    my $ok = 1;
+
     for my $generator (@{ $analyzer->mck->generators })
     {
         $generator->analyse($analyzer);
@@ -78,9 +80,11 @@ sub kwalitee_ok
 
             next if grep { $indicator->{name} eq $_ } @skip_tests;
 
-            _run_indicator($analyzer->d, $indicator);
+            $ok &&= _run_indicator($analyzer->d, $indicator);
         }
     }
+
+    return $ok;
 }
 
 sub _run_indicator
@@ -88,10 +92,12 @@ sub _run_indicator
     my ($dist, $metric) = @_;
 
     my $subname = $metric->{name};
+    my $ok = 1;
 
     $Test->level($Test->level + 1);
     if (not $Test->ok( $metric->{code}->($dist), $subname))
     {
+        $ok = 0;
         $Test->diag('Error: ', $metric->{error});
 
         # NOTE: this is poking into the analyse structures; we really should
@@ -111,6 +117,8 @@ sub _run_indicator
         $Test->diag('Remedy: ', $metric->{remedy});
     }
     $Test->level($Test->level - 1);
+
+    return $ok;
 }
 
 1;

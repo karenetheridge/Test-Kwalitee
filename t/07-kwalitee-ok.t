@@ -16,7 +16,9 @@ BEGIN {
 use Test::Kwalitee 'kwalitee_ok';
 
 # these tests all pass without building the dist
-kwalitee_ok(qw(has_changelog has_readme has_tests));
+my $result = kwalitee_ok(qw(has_changelog has_readme has_tests));
+
+ok($result, 'kwalitee_ok returned true when tests pass');
 
 ok(!Test::Builder->new->has_plan, 'there has been no plan yet');
 
