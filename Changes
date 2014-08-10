@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.20      2014-08-10 02:57:00Z (TRIAL RELEASE)
     - running the tests via the import method directly has been deprecated;
       the new kwalitee_ok() function is added to provide a more sane and
       logical layout to your tests.

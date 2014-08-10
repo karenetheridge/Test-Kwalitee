@@ -8,21 +8,21 @@ Test::Kwalitee - Test the Kwalitee of a distribution before you release it
 
 =head1 VERSION
 
-version 1.19
+version 1.20
 
 =head1 SYNOPSIS
 
-  # in a separate test file
+In a separate test file:
 
+  use Test::More;
   BEGIN {
-      unless ($ENV{RELEASE_TESTING})
-      {
-          use Test::More;
-          plan(skip_all => 'these tests are for release candidate testing');
-      }
+      plan skip_all => 'these tests are for release candidate testing'
+          unless $ENV{RELEASE_TESTING};
   }
 
-  use Test::Kwalitee;
+  use Test::Kwalitee 'kwalitee_ok';
+  kwalitee_ok();
+  done_testing;
 
 =head1 DESCRIPTION
 
@@ -50,14 +50,37 @@ If you ship this test, it will not run for anyone else, because of the
 C<RELEASE_TESTING> guard. (You can omit this guard if you move the test to
 xt/release/, which is not run automatically by other users.)
 
-To run only a handful of tests, pass their names to the module in the C<test>
-argument (either in the C<use> directive, or when calling C<import> directly):
+=head1 FUNCTIONS
 
-  use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
+=head2 kwalitee_ok
+
+With no arguments, runs all standard metrics.
+
+To run only a handful of tests, pass their name(s) to the C<kwalitee_ok>
+function:
+
+  kwalitee_ok(qw( use_strict has_tests ));
 
 To disable a test, pass its name with a leading minus (C<->):
 
-  use Test::Kwalitee tests => [ qw( -use_strict has_readme ));
+  kwalitee_ok(qw( -use_strict has_readme ));
+
+=head1 BACK-COMPATIBILITY MODE
+
+Previous versions of this module ran tests directly via the C<import> sub, like so:
+
+    use Test::Kwalitee;
+    # and that's it!
+
+...but this is problematic if you need to perform some setup first, as you
+would need to do that in a C<BEGIN> block, or manually call C<import>. This is
+messy!
+
+However, this calling path is still available, e.g.:
+
+  use Test::Kwalitee tests => [ qw( use_strict has_tests ) ];
+
+=head1 METRICS
 
 The list of each available metric currently available on your
 system can be obtained with the C<kwalitee-metrics> command (with
@@ -200,6 +223,14 @@ L<Test::Kwalitee::Extra>
 
 L<Dist::Zilla::Plugin::Test::Kwalitee>
 
+=item *
+
+L<Dist::Zilla::Plugin::Test::Kwalitee::Extra>
+
+=item *
+
+L<Dist::Zilla::App::Command::kwalitee>
+
 =back
 
 =head1 AUTHORS
@@ -225,6 +256,8 @@ the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTORS
 
+=for stopwords David Steinbrunner Gavin Sherlock Kenichi Ishigaki Nathan Haigh Zoffix Znet chromatic
+
 =over 4
 
 =item *
@@ -246,6 +279,10 @@ Nathan Haigh <nathanhaigh@ukonline.co.uk>
 =item *
 
 Zoffix Znet <cpan@zoffix.com>
+
+=item *
+
+chromatic <chromatic@wgz.org>
 
 =back
 
