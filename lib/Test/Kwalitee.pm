@@ -80,7 +80,8 @@ sub kwalitee_ok
 
             next if grep { $indicator->{name} eq $_ } @skip_tests;
 
-            $ok &&= _run_indicator($analyzer->d, $indicator);
+            my $result = _run_indicator($analyzer->d, $indicator);
+            $ok &&= $result;
         }
     }
 
