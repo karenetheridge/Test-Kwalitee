@@ -6,6 +6,7 @@ use Test::More 0.88;
 use Test::Deep;
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
+require Test::Kwalitee;
 my ($premature, @results) = run_tests(
     sub {
         # prevent Test::Kwalitee from making a plan
