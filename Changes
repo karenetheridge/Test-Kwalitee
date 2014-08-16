@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - document metrics added in Module::CPANTS::Analyse 0.93_03
 
 1.20      2014-08-10 02:57:00Z (TRIAL RELEASE)
     - running the tests via the import method directly has been deprecated;
