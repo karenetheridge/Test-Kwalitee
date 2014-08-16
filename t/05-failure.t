@@ -37,6 +37,6 @@ cmp_deeply(
         }),
     ],
     'test fails, with diagnosis',
-);
+) or diag 'got results: ', explain \@results;
 
 done_testing;

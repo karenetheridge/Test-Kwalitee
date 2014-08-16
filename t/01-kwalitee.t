@@ -58,6 +58,6 @@ cmp_deeply(
         } @expected
     ),
     'our expected tests ran correctly',
-);
+) or diag 'got results: ', diag \@results;
 
 done_testing;
