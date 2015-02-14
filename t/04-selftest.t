@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 
