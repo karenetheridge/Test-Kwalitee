@@ -301,8 +301,7 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 
 =head1 SEE ALSO
 
-=begin :list
-
+=for :list
 * L<kwalitee-metrics> (in this distribution)
 * L<Module::CPANTS::Analyse>
 * L<App::CPANTS::Lint>
@@ -310,7 +309,5 @@ With thanks to CPANTS and Thomas Klausner, as well as test tester Chris Dolan.
 * L<Dist::Zilla::Plugin::Test::Kwalitee>
 * L<Dist::Zilla::Plugin::Test::Kwalitee::Extra>
 * L<Dist::Zilla::App::Command::kwalitee>
-
-=end :list
 
 =cut
