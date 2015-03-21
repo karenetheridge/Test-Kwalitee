@@ -7,10 +7,9 @@ package Test::Kwalitee;
 
 our $VERSION = '1.23';
 
-use Cwd;
+use Cwd ();
 use Test::Builder 0.88;
 use Module::CPANTS::Analyse 0.92;
-use namespace::clean;
 
 use parent 'Exporter';
 our @EXPORT_OK = qw(kwalitee_ok);
@@ -59,7 +58,7 @@ sub kwalitee_ok
     # MCA has a patch to add 'needs_tarball', 'no_build' as flags
     my @skip_flags = qw(is_extra is_experimental needs_db);
 
-    my $basedir = cwd;
+    my $basedir = Cwd::cwd;
 
     my $analyzer = Module::CPANTS::Analyse->new({
         distdir => $basedir,
