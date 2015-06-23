@@ -5,6 +5,8 @@ package Test::Kwalitee;
 # KEYWORDS: testing tests kwalitee CPANTS quality lint errors critic
 # vim: set ts=8 sw=4 tw=78 et :
 
+our $VERSION = '1.23';
+
 use Cwd;
 use Test::Builder 0.88;
 use Module::CPANTS::Analyse 0.92;
