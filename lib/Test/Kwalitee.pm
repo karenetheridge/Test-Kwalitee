@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 package Test::Kwalitee;
+# vim: set ts=8 sts=4 sw=4 tw=115 et :
 # ABSTRACT: Test the Kwalitee of a distribution before you release it
 # KEYWORDS: testing tests kwalitee CPANTS quality lint errors critic
-# vim: set ts=8 sts=4 sw=4 tw=115 et :
 
 our $VERSION = '1.23';
 
