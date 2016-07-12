@@ -7,12 +7,6 @@ use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
 # we are testing ourselves, so we don't want this warning
 BEGIN { $ENV{_KWALITEE_NO_WARN} = 1; }
 
-# newer Module::CPANTS::Kwalitee::CpantsErrors checks $Test::Kwalitee::VERSION
-BEGIN {
-    require Test::Kwalitee;
-    $Test::Kwalitee::VERSION = '100' unless $Test::Kwalitee::VERSION;
-}
-
 use Test::Kwalitee 'kwalitee_ok';
 
 # these tests all pass without building the dist

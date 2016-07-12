@@ -5,17 +5,12 @@ use Test::More 0.88;
 use Test::Deep;
 use Test::Warnings 0.009 ':no_end_test', ':all';
 
-# newer Module::CPANTS::Kwalitee::CpantsErrors checks $Test::Kwalitee::VERSION
-BEGIN {
-    require Test::Kwalitee;
-    $Test::Kwalitee::VERSION = '100' unless $Test::Kwalitee::VERSION;
-}
-
 # we explicitly DO want to see warnings here...
 delete local @ENV{qw(_KWALITEE_NO_WARN AUTHOR_TESTING RELEASE_TESTING)};
 
 my @warnings = warnings {
     subtest 'no %ENV, running from t/' => sub {
+        require Test::Kwalitee;
         Test::Kwalitee->import(tests => [ 'has_tests' ])
     };
 };
