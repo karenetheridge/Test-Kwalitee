@@ -1,6 +1,7 @@
 Revision history for Test-Kwalitee
 
 {{$NEXT}}
+    - update the list of metrics to the latest Module::CPANTS::Analyse
 
 1.22      2014-08-16 03:25:59Z
     - do not stop running tests at the first failure (broken since 1.20)

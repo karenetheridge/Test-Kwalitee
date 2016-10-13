@@ -205,7 +205,7 @@ However, this calling path is still available, e.g.:
 The list of each available metric currently available on your
 system can be obtained with the C<kwalitee-metrics> command (with
 descriptions, if you pass C<--verbose> or C<-v>, but
-as of Test::Kwalitee 1.19 and L<Module::CPANTS::Analyse> 0.93_01, the tests include:
+as of L<Module::CPANTS::Analyse> 0.97_03, the tests include:
 
 =begin :list
 
@@ -247,6 +247,10 @@ Does the distribution have a F<README> file?
 * has_tests
 
 Does the distribution have tests?
+
+* manifest_matches_dist
+
+Do the F<MANIFEST> and distribution contents match?
 
 * meta_json_conforms_to_known_spec
 
