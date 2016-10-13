@@ -1,0 +1,60 @@
+
+who is using this?
+grep.cpan.me/?q=x_cpants
+
+-----
+
+add all the additional is_extra metrics like has_warnings!!!
+    presently I just blindly skip is_extra, is_experimental. need a way to put
+    those back in.
+
+------
+vincent claims this is needed to avoid dying mid-way through tests.. fix.
+(#perl-qa, 2015-05-12)
+https://metacpan.org/source/VPIT/Perl-Critic-Policy-Dynamic-NoIndirect-0.06/t/99-kwalitee.t
+
+------
+
+https://rt.cpan.org/Ticket/Display.html?id=98795
+need to test this without perlbrew
+
+we can compile our own perl and install it into ~ether/bin/perl202
+and install all the prereqs we need...
+
+-----------
+
+- new interface, to allow for a hashref of options
+    e.g.:
+    {
+      todo => 1,
+      type => [ qw(is_extra is_experimental) ],
+        or:
+      tests => [ ... test names ],
+    }
+
+  when calling _run_indicator, set local $TODO if this metric is marked as non-failing.
+
+    *** and allow is_extra tests in [Test::Kwalitee]
+
+
+- update metric documentation for latest MCA
+
+
+
+investigate this failure:
+http://www.cpantesters.org/cpan/report/d53d3a76-f9d9-11e4-afd2-1057062ccc87
+
+and see #perl-qa scrollback about vincent's complaint
+14:59 -!- vincent claims this is needed or kwalitee will die - investigate and fix.
+https://metacpan.org/source/VPIT/Perl-Critic-Policy-Dynamic-NoIndirect-0.06/t/99-kwalitee.t
+
+
+-----------
+
+do not run tests (and bail out noisily) if running when a cpan client is
+installing:  e.g. see https://rt.cpan.org/Ticket/Display.html?id=107821
+
+
+-------
+
+respect x_cpants metadata by skipping the listed metrics -- where is the spec for it?
