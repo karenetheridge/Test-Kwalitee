@@ -248,6 +248,15 @@ Does the distribution have a F<README> file?
 
 Does the distribution have tests?
 
+* meta_json_conforms_to_known_spec
+
+Does META.json conform to the recognised META.json specification?
+(For specs see L<CPAN::Meta::Spec>)
+
+* meta_json_is_parsable
+
+Can the F<META.json> be parsed?
+
 * meta_yml_conforms_to_known_spec
 
 =for stopwords recognised
@@ -259,15 +268,6 @@ L<http://module-build.sourceforge.net/META-spec-current.html>)
 * meta_yml_is_parsable
 
 Can the F<META.yml> be parsed?
-
-* meta_json_conforms_to_known_spec
-
-Does META.json conform to the recognised META.json specification?
-(For specs see L<CPAN::Meta::Spec>)
-
-* meta_json_is_parsable
-
-Can the F<META.json> be parsed?
 
 * no_broken_auto_install
 
