@@ -1,6 +1,7 @@
 Revision history for Test-Kwalitee
 
 {{$NEXT}}
+    - new test for compatibility in taint mode
 
 1.23      2016-10-14 01:17:11Z
     - update the list of metrics to the latest Module::CPANTS::Analyse
