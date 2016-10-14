@@ -1,5 +1,7 @@
 Revision history for Test-Kwalitee
 
+{{$NEXT}}
+
 1.24      2016-10-14 01:22:27Z (TRIAL RELEASE)
     - new test for compatibility in taint mode
 
