@@ -5,7 +5,7 @@ package Test::Kwalitee;
 # ABSTRACT: Test the Kwalitee of a distribution before you release it
 # KEYWORDS: testing tests kwalitee CPANTS quality lint errors critic
 
-our $VERSION = '1.23';
+our $VERSION = '1.24';
 
 use Cwd ();
 use Test::Builder 0.88;
