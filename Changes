@@ -1,6 +1,6 @@
 Revision history for Test-Kwalitee
 
-{{$NEXT}}
+1.23      2016-10-14 01:17:11Z
     - update the list of metrics to the latest Module::CPANTS::Analyse
 
 1.22      2014-08-16 03:25:59Z
