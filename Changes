@@ -1,6 +1,7 @@
 Revision history for Test-Kwalitee
 
 {{$NEXT}}
+    - bump Test::More prereq for (fully) working subtests
 
 1.25      2017-02-28 03:21:28Z
     - fix test to not rely on . in @INC
