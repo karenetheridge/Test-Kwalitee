@@ -21,7 +21,11 @@ cmp_deeply(
     'warning is issued when there is no environment guard',
 ) or diag 'got warnings: ', explain \@warnings;
 
-@warnings = warnings { subtest 'no %ENV, running from xt/' => sub { do 'xt/warnings.t' } };
+@warnings = warnings {
+    subtest 'no %ENV, running from xt/' => sub {
+        do 'xt/warnings.t' or die $@;
+    }
+};
 cmp_deeply(
     \@warnings,
     [ ],
