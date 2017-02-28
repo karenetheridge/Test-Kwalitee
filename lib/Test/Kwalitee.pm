@@ -45,8 +45,8 @@ sub kwalitee_ok
         # Please DO NOT enable this test to run for users, as it can fail
         # unexpectedly as parts of the toolchain changes!
         unless $ENV{_KWALITEE_NO_WARN} or $ENV{AUTHOR_TESTING} or $ENV{RELEASE_TESTING}
-            or (caller)[1] =~ /^xt/
-            or ((caller)[0]->isa(__PACKAGE__) and (caller(1))[1] =~ /^xt/);
+            #or (caller)[1] =~ m{^\./xt}
+            or ((caller)[0]->isa(__PACKAGE__) and (caller(1))[1] =~ m{^\./xt});
 
     my @run_tests = grep { /^[^-]/ } @tests;
     my @skip_tests = map { s/^-//; $_ } grep { /^-/ } @tests;

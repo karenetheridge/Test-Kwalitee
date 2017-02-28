@@ -23,7 +23,7 @@ cmp_deeply(
 
 @warnings = warnings {
     subtest 'no %ENV, running from xt/' => sub {
-        do 'xt/warnings.t' or die $@;
+        do './xt/warnings.t' or die $@;
     }
 };
 cmp_deeply(

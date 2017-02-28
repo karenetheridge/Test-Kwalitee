@@ -1,6 +1,7 @@
 Revision history for Test-Kwalitee
 
 {{$NEXT}}
+    - fix test to not rely on . in @INC
 
 1.24      2016-10-14 01:22:27Z (TRIAL RELEASE)
     - new test for compatibility in taint mode
