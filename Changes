@@ -1,6 +1,6 @@
 Revision history for Test-Kwalitee
 
-{{$NEXT}}
+1.25      2017-02-28 03:21:28Z
     - fix test to not rely on . in @INC
 
 1.24      2016-10-14 01:22:27Z (TRIAL RELEASE)
