@@ -23,7 +23,7 @@ subtest 'Test::Kwalitee import' => sub {
     require Test::Kwalitee;
     # we use an eval because Module::CPANTS::Analyse is not yet taint-clean
     eval { Test::Kwalitee->import(tests => \@expected) } or diag $@;
-    $test_count = Test::Builder->new->current_test,
+    $test_count = Test::Builder->new->current_test;
 };
 
 is(
