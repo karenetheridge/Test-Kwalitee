@@ -37,5 +37,19 @@ delete local @ENV{qw(_KWALITEE_NO_WARN AUTHOR_TESTING RELEASE_TESTING)};
     ) or diag 'got warnings: ', explain \@warnings;
 }
 
+{
+    my @warnings = warnings {
+        subtest 'kwalitee_ok' => sub {
+            do './xt/kwalitee_ok.t' or die $@;
+        }
+    };
+
+    cmp_deeply(
+        \@warnings,
+        [ ],
+        'no warnings issued with from running kwalitee_ok directly',
+    ) or diag 'got warnings: ', explain \@warnings;
+}
+
 had_no_warnings if $ENV{AUTHOR_TESTING};
 done_testing;
