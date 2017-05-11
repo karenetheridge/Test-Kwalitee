@@ -1,5 +1,7 @@
 Revision history for Test-Kwalitee
 
+{{$NEXT}}
+
 1.26      2017-05-11 12:04:49Z
     - bump Test::More prereq for (fully) working subtests
     - properly detect the xt/ caller condition when running kwalitee_ok
