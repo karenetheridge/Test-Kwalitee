@@ -11,6 +11,9 @@ BEGIN { $ENV{_KWALITEE_NO_WARN} = 1; }
 $TODO = 'local::lib is not compatible with taint mode'
     if $ENV{PERL_LOCAL_LIB_ROOT};
 
+$TODO ||= 'PERL5LIB overrides are not compatible with taint mode'
+    if $ENV{PERL5LIB};
+
 # these tests all pass without building the dist
 my @expected = qw(
     has_changelog
