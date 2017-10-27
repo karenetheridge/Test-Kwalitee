@@ -13,6 +13,9 @@ BEGIN {
 
     $TODO ||= 'PERL5LIB overrides are not compatible with taint mode'
         if $ENV{PERL5LIB};
+
+    $TODO ||= 'version.pm earlier than 0.9918 misbehaves under taint mode'
+        if "$]" < '5.017002' && do { require version; $version->VERSION } < '0.9918';
 }
 
 use if $ENV{AUTHOR_TESTING} && !$TODO, 'Test::Warnings';
