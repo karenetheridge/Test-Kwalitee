@@ -2,17 +2,20 @@
 use strict;
 use warnings;
 
-use Test::More 0.96;
-use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
+use Test::More 0.94;
 
 # we are testing ourselves, so we don't want this warning
 BEGIN { $ENV{_KWALITEE_NO_WARN} = 1; }
 
-$TODO = 'local::lib is not compatible with taint mode'
-    if $ENV{PERL_LOCAL_LIB_ROOT};
+BEGIN {
+    $TODO = 'local::lib is not compatible with taint mode'
+        if $ENV{PERL_LOCAL_LIB_ROOT};
 
-$TODO ||= 'PERL5LIB overrides are not compatible with taint mode'
-    if $ENV{PERL5LIB};
+    $TODO ||= 'PERL5LIB overrides are not compatible with taint mode'
+        if $ENV{PERL5LIB};
+}
+
+use if $ENV{AUTHOR_TESTING} && !$TODO, 'Test::Warnings';
 
 # these tests all pass without building the dist
 my @expected = qw(
