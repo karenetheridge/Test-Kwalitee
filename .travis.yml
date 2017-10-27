@@ -16,6 +16,10 @@ perl:
   - "5.12"
   - "5.10"
   - "5.8"
+matrix:
+  allow_failures:
+    - perl:
+      - "blead" # does 5.27.6 have issues? :(
 env:
   global:
     - TEST_PARTITIONS=1
