@@ -1,6 +1,6 @@
 Revision history for Test-Kwalitee
 
-{{$NEXT}}
+1.27      2017-11-05 18:45:40Z
     - make taint test TODO when version.pm is not current (see RT#118087)
 
 1.26      2017-05-11 12:04:49Z
