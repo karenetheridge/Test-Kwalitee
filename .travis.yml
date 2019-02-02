@@ -1,11 +1,13 @@
-sudo: false
 addons:
   apt:
     packages:
       - aspell
+      - aspell-en
 language: perl
 perl:
-  - "blead"
+  - blead       # builds perl from git
+  - dev         # latest point release
+  - "5.28"
   - "5.26"
   - "5.24"
   - "5.22"
@@ -22,7 +24,6 @@ matrix:
 
 env:
   global:
-    - TEST_PARTITIONS=1
     - AUTHOR_TESTING=1
     - AUTOMATED_TESTING=1
     - RELEASE_TESTING=0
@@ -34,9 +35,8 @@ before_install:
   - build-dist
   - cd $BUILD_DIR
 install:
-  - perl -M5.014 -e1 2>/dev/null || cpan-install Dist::Zilla@5.047
   - cpan-install --deps
 script:
   - perl Makefile.PL
   - make
-  - prove -b -r -s -j1 $(test-files)
+  - prove -b -r -s -j$(test-jobs) $(test-files)
