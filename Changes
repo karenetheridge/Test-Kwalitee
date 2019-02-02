@@ -1,5 +1,7 @@
 Revision history for Test-Kwalitee
 
+{{$NEXT}}
+
 1.28      2019-02-02 19:29:29Z
     - fix taint-mode tests to accomodate failures with Module::CPANTS::Analyse
       0.99 (insecure loading of a backend implementation)
