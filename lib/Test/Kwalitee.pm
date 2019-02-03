@@ -207,6 +207,8 @@ system can be obtained with the C<kwalitee-metrics> command (with
 descriptions, if you pass C<--verbose> or C<-v>, but
 as of L<Module::CPANTS::Analyse> 0.97_03, the tests include:
 
+=for stopwords recognised
+
 =begin :list
 
 * has_abstract_in_pod
@@ -262,8 +264,6 @@ Does META.json conform to the recognised META.json specification?
 Can the F<META.json> be parsed?
 
 * meta_yml_conforms_to_known_spec
-
-=for stopwords recognised
 
 Does META.yml conform to any recognised META.yml specification?
 (For specs see
